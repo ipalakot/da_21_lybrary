@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\UtilisateursRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=UtilisateursRepository::class)
@@ -19,11 +20,21 @@ class Utilisateurs
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Length(
+     *      min = 2,
+     *      max = 50,
+     *      minMessage = "Le nom doit avoir au mois {{ limit }} characteres ",
+     *      maxMessage = "Ce nom ne doit pas depassé la longuer de  {{ limit }} characters")
      */
     private $nom;
 
     /**
      * @ORM\Column(type="string", length=255)
+     *      * @Assert\Length(
+     *      min = 4,
+     *      max = 50,
+     *      minMessage = "Le Prenom doit avoir au mois {{ limit }} characteres ",
+     *      maxMessage = "Ce Prenom ne doit pas depassé la longuer de  {{ limit }} characters")
      */
     private $prenoms;
 
@@ -39,6 +50,8 @@ class Utilisateurs
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Email(
+     *     message = "Le mail  '{{ value }}' n'est pas valide")
      */
     private $email;
 
