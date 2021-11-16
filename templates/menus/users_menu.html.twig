@@ -1,0 +1,57 @@
+<!-- Fixed navbar -->
+	<div class="navbar navbar-inverse navbar-fixed-top headroom" >
+		<div class="container">
+			<div class="navbar-header">
+				<!-- Button for smallest screens -->
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"><span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+				<a class="navbar-brand" href="{{ path('accueil') }}"><img src="#" alt="Biblio-DWWM2"></a>
+			</div>
+			<div class="navbar-collapse collapse">
+				<ul class="nav navbar-nav pull-right">
+					<li class="{% if current_menu is defined and current_menu == 'home' %} active {% endif %}"><a href="{{ path('accueil') }}">Accueil</a></li>
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle " data-toggle="dropdown">A propos <b class="caret"></b></a>
+						<ul class="dropdown-menu">
+							<li class="active"><a href="#">Qui sommes nous </a></li>
+						</ul>
+					</li>
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown"> Documentation  <b class="caret"></b></a>
+						<ul class="dropdown-menu">
+							<li class="active"><a href="{{ path('articles_index') }}">Articles</a></li>
+							<li class="active"><a href="#">Livres</a></li>
+							<li class="active"><a href="#">Cd / DVD </a> </li>
+						</ul>
+					</li>
+
+					<li><a href="#">Nouveautés</a></li>
+		
+					<li class="active"><a href="#">Galeries </a></li>
+
+
+					<li><a href="#">Nous-Contacter</a></li>
+					<li><a href="{{ path('admin_index') }}">Admin</a></li>
+				
+				{#	{% if not app.user %}
+						<li><a class="btn" href="#">Connexion </a></li>
+					{% else %}
+		
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle " data-toggle="dropdown"> Profil <b class="caret"></b></a>
+						<ul class="dropdown-menu">
+							<li class="active"><a href="#">Mon Profil </a></li>
+							<li class="active"><a href="#">Edition Prifl</a></li>
+							<li class="active"><a href="#">Suppression de Compte</a></li>
+
+						</ul>
+					</li>
+
+						<li><a class="btn btn-secondary" href="#" target="blank" >Admin</a></li>
+						<li><a class="btn btn-secondary" href="#"> LOG OUT</a></li>
+					{% endif %} #}
+
+				</ul>
+			</div><!--/.nav-collapse -->
+		</div>
+	</div> 
+	<!-- /.navbar -->

@@ -1,0 +1,12 @@
+{% extends 'base_admin.html.twig' %}
+
+{% block title %} NouvelArticles{% endblock %}
+
+{% block body %}
+    <br><br>
+    <h1>Nouvel Articles</h1>
+
+    {{ include('articles/_form.html.twig') }}
+<br>
+    <a href="{{ path('articles_index') }}">Tous les Articles</a>
+{% endblock %}

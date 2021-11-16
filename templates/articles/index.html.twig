@@ -1,0 +1,40 @@
+{% extends 'base_admin.html.twig' %}
+
+{% block title %}Articles index{% endblock %}
+
+{% block body %}
+   <br><br>
+    <h1>Tous les Articles</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Contenu</th>
+                <th>Date</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for article in articles %}
+            <tr>
+                <td>{{ article.id }}</td>
+                <td>{{ article.title }}</td>
+                <td>{{ article.contenu }}</td>
+                <td>{{ article.date ? article.date|date('Y-m-d H:i:s') : '' }}</td>
+                <td>
+                    <a href="{{ path('articles_show', {'id': article.id}) }}">afficher |</a>
+                    <a href="{{ path('articles_edit', {'id': article.id}) }}">editer |</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">Aucun article pour lemoment !</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('articles_new') }}">Creation </a>
+{% endblock %}

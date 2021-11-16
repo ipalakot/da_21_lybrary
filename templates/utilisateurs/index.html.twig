@@ -1,0 +1,43 @@
+{% extends 'base_admin.html.twig' %}
+
+{% block title %}Utilisateurs index{% endblock %}
+
+{% block body %}
+    <h1>Utilisateurs index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Prenoms</th>
+                <th>Datenaiss</th>
+                <th>Adresse</th>
+                <th>Email</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for utilisateur in utilisateurs %}
+            <tr>
+                <td>{{ utilisateur.id }}</td>
+                <td>{{ utilisateur.nom }}</td>
+                <td>{{ utilisateur.prenoms }}</td>
+                <td>{{ utilisateur.datenaiss ? utilisateur.datenaiss|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ utilisateur.adresse }}</td>
+                <td>{{ utilisateur.email }}</td>
+                <td>
+                    <a href="{{ path('utilisateurs_show', {'id': utilisateur.id}) }}">Afficher | </a>
+                    <a href="{{ path('utilisateurs_edit', {'id': utilisateur.id}) }}">Editer | </a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">Pas d'Utulisateurs</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('utilisateurs_new') }}">Enregistrement !</a>
+{% endblock %}

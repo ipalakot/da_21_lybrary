@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+	<head>
+ 		{% block head %}
+		 	<meta name="viewport" charset=utf-8" content="width=device-width, initial-scale=1.0">
+			<meta http-equiv="Content-Type" content="text/html;  />
+			<title>
+				{% block title %}Anawin {% endblock %}
+			</title>
+
+			<link rel="shortcut icon" href="assets/images/gt_favicon.ng">
+				{% block stylesheets %} 
+				{% endblock %}
+					<link rel="stylesheet"  href="{{ asset('css/main.css') }}"> 
+					<link rel="stylesheet"  href="{{ asset('assets/css/bootstrap.min.css') }}"> 
+					<link rel="stylesheet"  href="{{ asset('assets/css/bootstrap-theme.css') }}"> 
+					<link rel="stylesheet"  href="{{ asset('assets/css/font-awesome.min.css') }}"> 
+			
+			<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+			<!--[if lt IE 9]>
+			<script src="assets/js/html5shiv.js"></script>
+			<script src="assets/js/respond.min.js"></script>
+			<![endif]-->
+		{% endblock %}
+	</head>
+
+<body class="home">
+
+{% include("menus/admin_menu.html.twig")%}
+
+{% block body %}
+{% endblock %}
+
+
+{% block footer %}
+
+{% endblock %}
+
+ {% block javascripts %}
+ 	<!-- JavaScript libs are placed at the end of the document so the pages load faster -->
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+	<script src="assets/js/headroom.min.js"></script>
+	<script src="assets/js/jQuery.headroom.min.js"></script>
+	<script src="assets/js/template.js"></script>
+ {% endblock %}
+ <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+
+
+</body>
+</html>
