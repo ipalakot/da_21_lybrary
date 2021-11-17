@@ -18,13 +18,13 @@ class UtilisateursType extends AbstractType
     {
         $builder
             ->add('nom', TextType::class, 
-            ['label'=> 'Nomssss'])
+            ['label'=> 'Noms :'])
             ->add('prenoms', 
                 TextType::class, 
-                ['label'=> 'PrenomsTTT'])
+                ['label'=> 'Prenoms : '])
             ->add('datenaiss')
-            ->add('adresse', TextType::class, ['label'=> 'Adresse'])
-            ->add('email', EmailType::class, ['label'=> 'Email'])
+            ->add('adresse', TextType::class, ['label'=> 'Adresse : '])
+            ->add('email', EmailType::class, ['label'=> 'Email :'])
         ;
     }
 

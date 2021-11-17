@@ -5,8 +5,12 @@ namespace App\Entity;
 use App\Repository\CategoriesRepository;
 use Doctrine\ORM\Mapping as ORM;
 
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+
 /**
  * @ORM\Entity(repositoryClass=CategoriesRepository::class)
+ * @UniqueEntity("titre")
  */
 class Categories
 {
@@ -19,11 +23,22 @@ class Categories
 
     /**
      * @ORM\Column(type="string", length=255)
+    * @Assert\Length(
+     *      min = 2,
+     *      max = 50,
+     *      minMessage = "Le titre doit avoir 1 minimum de {{ limit }} characteres long",
+     *      maxMessage = "Votre Titre de ne pas depasser {{ limit }} characteres")
      */
     private $titre;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Length(
+     *      min = 2,
+     *      max = 50,
+     *      minMessage = "Le resumé doit avoir 1 minimum de {{ limit }} characteres long",
+     *      maxMessage = "Votre resumé de ne pas depasser {{ limit }} characteres"
+     * )
      */
     private $resume;
 

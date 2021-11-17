@@ -4,9 +4,12 @@ namespace App\Entity;
 
 use App\Repository\ArticlesRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass=ArticlesRepository::class)
+ * @UniqueEntity("title")
  */
 class Articles
 {
@@ -19,6 +22,12 @@ class Articles
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Length(
+     *      min = 2,
+     *      max = 50,
+     *      minMessage = "Le titre doit avoir 1 minimum de {{ limit }} characteres long",
+     *      maxMessage = "Votre Titre de ne pas depasser {{ limit }} characteres"
+     * )
      */
     private $title;
 
@@ -29,6 +38,8 @@ class Articles
 
     /**
      * @ORM\Column(type="datetime")
+     * @Assert\DateTime
+     * @var string A "Y-m-d H:i:s" formatted value
      */
     private $date;
 
