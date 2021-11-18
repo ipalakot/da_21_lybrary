@@ -46,14 +46,12 @@ class Articles
     private $date;
 
     /**
-     * @ORM\OneToMany(targetEntity=Categories::class, mappedBy="articles")
+     * @ORM\ManyToOne(targetEntity=Categories::class, inversedBy="articles")
+     * @ORM\JoinColumn(nullable=false)
      */
-    private $categorie;
+    private $categories;
 
-    public function __construct()
-    {
-        $this->categorie = new ArrayCollection();
-    }
+
 
     public function getId(): ?int
     {
@@ -96,32 +94,15 @@ class Articles
         return $this;
     }
 
-    /**
-     * @return Collection|Categories[]
-     */
-    public function getCategorie(): Collection
+
+    public function getCategories(): ?Categories
     {
-        return $this->categorie;
+        return $this->categories;
     }
 
-    public function addCategorie(Categories $categorie): self
+    public function setCategories(?Categories $categories): self
     {
-        if (!$this->categorie->contains($categorie)) {
-            $this->categorie[] = $categorie;
-            $categorie->setArticles($this);
-        }
-
-        return $this;
-    }
-
-    public function removeCategorie(Categories $categorie): self
-    {
-        if ($this->categorie->removeElement($categorie)) {
-            // set the owning side to null (unless already changed)
-            if ($categorie->getArticles() === $this) {
-                $categorie->setArticles(null);
-            }
-        }
+        $this->categories = $categories;
 
         return $this;
     }

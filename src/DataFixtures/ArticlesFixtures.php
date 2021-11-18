@@ -18,7 +18,7 @@ class ArticlesFixtures extends Fixture
       
         $faker = Faker\Factory::create('fr_FR');
 
-         // Creer occurence de 10 Categroie
+         // Creer occurence de 5 Categroie
         for ($i=0; $i<5 ; $i++ ) 
         { 
             $categories = new Categories();
@@ -33,11 +33,11 @@ class ArticlesFixtures extends Fixture
             { 
                 $articles = new Articles();
                 
-                $articles->setTire($faker->sentence())
-                        ->setImage($faker->imageUrl())
-                        ->setResume($faker->sentence())
+                $articles->setTitle($faker->sentence($nb = 5, $asText = false))
+                        //->setImage($faker->imageUrl($width = 640, $height = 480))
+                        //->setResume($faker->sentence())
                         ->setContenu($faker->sentence()) 
-                        ->setCreatedAt(new \DateTime())
+                        ->setDate(new \DateTime())
                         ->setCategories($categories);
     
                     $manager->persist($articles);

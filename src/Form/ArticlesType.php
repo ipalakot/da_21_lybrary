@@ -20,6 +20,7 @@ class ArticlesType extends AbstractType
                 ['label'=> 'Titre'])
 
             ->add('contenu')
+            ->add('categories')
 
             ->add('date',            
                 DateType::class, 
