@@ -36,7 +36,7 @@ class ArticlesFixtures extends Fixture
                 $articles->setTitle($faker->sentence($nb = 5, $asText = false))
                         //->setImage($faker->imageUrl($width = 640, $height = 480))
                         //->setResume($faker->sentence())
-                        ->setContenu($faker->sentence()) 
+                        ->setContenu($faker->text($maxNbChars = 250)) 
                         ->setDate(new \DateTime())
                         ->setCategories($categories);
     
