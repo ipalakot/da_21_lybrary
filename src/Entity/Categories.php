@@ -42,6 +42,12 @@ class Categories
      */
     private $resume;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Articles::class, inversedBy="categorie")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $articles;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -67,6 +73,18 @@ class Categories
     public function setResume(string $resume): self
     {
         $this->resume = $resume;
+
+        return $this;
+    }
+
+    public function getArticles(): ?Articles
+    {
+        return $this->articles;
+    }
+
+    public function setArticles(?Articles $articles): self
+    {
+        $this->articles = $articles;
 
         return $this;
     }

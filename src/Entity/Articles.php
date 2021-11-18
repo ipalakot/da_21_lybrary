@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\ArticlesRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
@@ -43,6 +45,16 @@ class Articles
      */
     private $date;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Categories::class, mappedBy="articles")
+     */
+    private $categorie;
+
+    public function __construct()
+    {
+        $this->categorie = new ArrayCollection();
+    }
+
     public function getId(): ?int
     {
         return $this->id;
@@ -80,6 +92,36 @@ class Articles
     public function setDate(\DateTimeInterface $date): self
     {
         $this->date = $date;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Categories[]
+     */
+    public function getCategorie(): Collection
+    {
+        return $this->categorie;
+    }
+
+    public function addCategorie(Categories $categorie): self
+    {
+        if (!$this->categorie->contains($categorie)) {
+            $this->categorie[] = $categorie;
+            $categorie->setArticles($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCategorie(Categories $categorie): self
+    {
+        if ($this->categorie->removeElement($categorie)) {
+            // set the owning side to null (unless already changed)
+            if ($categorie->getArticles() === $this) {
+                $categorie->setArticles(null);
+            }
+        }
 
         return $this;
     }
