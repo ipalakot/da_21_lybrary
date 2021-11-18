@@ -38,7 +38,7 @@ class ArticlesFixtures extends Fixture
                         //->setResume($faker->sentence())
                         ->setContenu($faker->text($maxNbChars = 250)) 
                         ->setDate(new \DateTime())
-                        ->setCategories($categories);
+                        ->setCategory($categories);
     
                     $manager->persist($articles);
             }

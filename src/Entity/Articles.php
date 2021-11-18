@@ -2,8 +2,6 @@
 
 namespace App\Entity;
 
-use App\Repository\ArticlesRepository;
-
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
@@ -39,17 +37,14 @@ class Articles
 
     /**
      * @ORM\Column(type="datetime")
-     * @Assert\DateTime
-     * @var string A "Y-m-d H:i:s" formatted value
      */
     private $date;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Categories::class, inversedBy="articles")
+     * @ORM\ManyToOne(targetEntity=Categories::class, inversedBy="article")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $categories;
-
+    private $category;
 
 
     public function getId(): ?int
@@ -93,16 +88,17 @@ class Articles
         return $this;
     }
 
-
-    public function getCategories(): ?Categories
+    public function getCategory(): ?Categories
     {
-        return $this->categories;
+        return $this->category;
     }
 
-    public function setCategories(?Categories $categories): self
+    public function setCategory(?Categories $category): self
     {
-        $this->categories = $categories;
+        $this->category = $category;
 
         return $this;
     }
+
+
 }

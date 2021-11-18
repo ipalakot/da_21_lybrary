@@ -21,7 +21,7 @@
             <tr>
                 <td>{{ article.id }}</td>
                 <td>{{ article.title }}</td>
-                <td>{{ article.categories.titre}}</td>
+                <td>{{ article.category.titre}}</td>
                 <td>{{ article.date ? article.date|date('Y-m-d H:i:s') : '' }}</td>
                 <td>
                     <a href="{{ path('articles_show', {'id': article.id}) }}">afficher |</a>
