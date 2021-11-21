@@ -19,25 +19,29 @@ class ArticlesType extends AbstractType
         $builder
             ->add('title', 
                 TextType::class, [
-
                     'label'=> 'Titre',
+                    'attr' => ['placeholder' => 'Titre'],
+                    
                 ])
 
-            ->add('contenu')
             ->add('category', EntityType::class, [
                 // Label du champ    
                 'label'  => 'Categorie',
+                'placeholder' => 'Categorie',
         
                 // looks for choices from this entity
                 'class' => Categories::class,
             
                 // Sur quelle propriete je fais le choix
                 'choice_label' => 'titre',
+
             
                 // used to render a select box, check boxes or radios
                 // 'multiple' => true,
                 //'expanded' => true,
             ])
+
+            ->add('contenu')
 
             ->add('date',            
                 DateType::class, 

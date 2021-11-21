@@ -31,7 +31,7 @@ class Articles
     private $title;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="text")
      */
     private $contenu;
 
@@ -45,6 +45,11 @@ class Articles
      * @ORM\JoinColumn(nullable=false)
      */
     private $category;
+
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $resume;
 
 
     public function getId(): ?int
@@ -96,6 +101,18 @@ class Articles
     public function setCategory(?Categories $category): self
     {
         $this->category = $category;
+
+        return $this;
+    }
+
+    public function getResume(): ?string
+    {
+        return $this->resume;
+    }
+
+    public function setResume(?string $resume): self
+    {
+        $this->resume = $resume;
 
         return $this;
     }
