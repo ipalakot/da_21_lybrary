@@ -48,10 +48,10 @@ class ArticlesType extends AbstractType
 
             ->add('contenu', 
                 TextareaType::class, [
-                    'label'=> 'Resume',
+                    'label'=> 'Contenu',
                     'attr' => ['placeholder' => 'Contenu '],
                 ])
-                
+
             ->add('date',            
                 DateType::class, 
                 ['label'=> 'Date'])

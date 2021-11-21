@@ -3,7 +3,8 @@
 {% block title %}Utilisateurs index{% endblock %}
 
 {% block body %}
-    <h1>Utilisateurs index</h1>
+    <br><br>
+    <h1>Les Utilisateurs </h1>
 
     <table class="table">
         <thead>
@@ -11,9 +12,9 @@
                 <th>Id</th>
                 <th>Nom</th>
                 <th>Prenoms</th>
-                <th>Datenaiss</th>
-                <th>Adresse</th>
-                <th>Email</th>
+                {# <Datenaiss</#th> #}
+                {# <th>Adresse</th> #}
+                {# <th>Email</th> #}
                 <th>actions</th>
             </tr>
         </thead>
@@ -23,9 +24,9 @@
                 <td>{{ utilisateur.id }}</td>
                 <td>{{ utilisateur.nom }}</td>
                 <td>{{ utilisateur.prenoms }}</td>
-                <td>{{ utilisateur.datenaiss ? utilisateur.datenaiss|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ utilisateur.adresse }}</td>
-                <td>{{ utilisateur.email }}</td>
+                {# <td>{{ utilisateur.datenaiss ? utilisateur.datenaiss|date('Y-m-d H:i:s') : '' }}</td> #}
+               {# <td>{{ utilisateur.adresse }}</td> #}
+                {# <td>{{ utilisateur.email }}</td>  #}
                 <td>
                     <a href="{{ path('utilisateurs_show', {'id': utilisateur.id}) }}">Afficher | </a>
                     <a href="{{ path('utilisateurs_edit', {'id': utilisateur.id}) }}">Editer | </a>
