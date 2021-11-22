@@ -11,8 +11,10 @@
             <tr>
                 <th>Id</th>
                 <th>Title</th>
-                <th>Ccategorie</th>
-                <th>Date</th>
+                <th>Auteurs</th>
+                <th>Categorie</th>
+                <th>Resumé</th>
+                <th>Date Création</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -21,7 +23,9 @@
             <tr>
                 <td>{{ article.id }}</td>
                 <td>{{ article.title }}</td>
+                <th>{{ article.auteurs.noms}}</th>
                 <td>{{ article.category.titre}}</td>
+                        <td>{{ article.resume}}</td>
                 <td>{{ article.date ? article.date|date('Y-m-d H:i:s') : '' }}</td>
                 <td>
                     <a href="{{ path('articles_show', {'id': article.id}) }}">afficher |</a>

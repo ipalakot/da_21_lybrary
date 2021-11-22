@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\AuteursRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -31,6 +33,16 @@ class Auteurs
      * @ORM\Column(type="string", length=255)
      */
     private $mails;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Articles::class, mappedBy="auteurs")
+     */
+    private $articleaut;
+
+    public function __construct()
+    {
+        $this->articleaut = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -69,6 +81,36 @@ class Auteurs
     public function setMails(string $mails): self
     {
         $this->mails = $mails;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Articles[]
+     */
+    public function getArticleaut(): Collection
+    {
+        return $this->articleaut;
+    }
+
+    public function addArticleaut(Articles $articleaut): self
+    {
+        if (!$this->articleaut->contains($articleaut)) {
+            $this->articleaut[] = $articleaut;
+            $articleaut->setAuteurs($this);
+        }
+
+        return $this;
+    }
+
+    public function removeArticleaut(Articles $articleaut): self
+    {
+        if ($this->articleaut->removeElement($articleaut)) {
+            // set the owning side to null (unless already changed)
+            if ($articleaut->getAuteurs() === $this) {
+                $articleaut->setAuteurs(null);
+            }
+        }
 
         return $this;
     }

@@ -5,9 +5,9 @@
 {% block body %}
     <h1>Edit Utilisateurs</h1>
 
-    {{ include('utilisateurs/_form.html.twig', {'button_label': 'Update'}) }}
+    {{ include('utilisateurs/_form.html.twig', {'button_label': 'Editer'}) }}<br>
 
-    <a href="{{ path('utilisateurs_index') }}">back to list</a>
+    <a href="{{ path('utilisateurs_index') }}">Liste des utilisateurs</a> <br>
 
     {{ include('utilisateurs/_delete_form.html.twig') }}
 {% endblock %}

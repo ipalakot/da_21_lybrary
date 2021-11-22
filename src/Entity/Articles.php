@@ -31,14 +31,11 @@ class Articles
     private $title;
 
     /**
-     * @ORM\Column(type="text")
+     * @ORM\ManyToOne(targetEntity=Auteurs::class, inversedBy="articleaut")
+     * @ORM\JoinColumn(nullable=false)
      */
-    private $contenu;
+    private $auteurs;
 
-    /**
-     * @ORM\Column(type="datetime")
-     */
-    private $date;
 
     /**
      * @ORM\ManyToOne(targetEntity=Categories::class, inversedBy="article")
@@ -47,9 +44,21 @@ class Articles
     private $category;
 
     /**
-     * @ORM\Column(type="text", nullable=true)
+     * @ORM\Column(type="datetime")
+     */
+    private $date;
+
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $resume;
+
+    
+    /**
+     * @ORM\Column(type="text")
+     */
+    private $contenu;
 
 
     public function getId(): ?int
@@ -101,6 +110,18 @@ class Articles
     public function setCategory(?Categories $category): self
     {
         $this->category = $category;
+
+        return $this;
+    }
+
+    public function getAuteurs(): ?Auteurs
+    {
+        return $this->auteurs;
+    }
+
+    public function setAuteurs(?Auteurs $auteurs): self
+    {
+        $this->auteurs = $auteurs;
 
         return $this;
     }

@@ -25,6 +25,18 @@ class HomeController extends AbstractController
     }
 
     /**
+     * @Route("/aprpos", name="home_about")
+     */
+    public function about(): Response
+    {
+        return $this->render('home/about.html.twig', [
+            'controller_name' => 'HomeController',
+        ]);
+    }
+
+    
+
+    /**
      * @Route("/home/articles", name="articles_index_home", methods={"GET"})
      */
     public function articles(ArticlesRepository $articlesRepository): Response

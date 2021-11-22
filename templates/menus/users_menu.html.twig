@@ -10,9 +10,9 @@
 				<ul class="nav navbar-nav pull-right">
 					<li class="{% if current_menu is defined and current_menu == 'home' %} active {% endif %}"><a href="{{ path('accueil') }}">Accueil</a></li>
 					<li class="dropdown">
-						<a href="#" class="dropdown-toggle " data-toggle="dropdown">A propos <b class="caret"></b></a>
+						<a href="{{ path('home_about') }}" class="dropdown-toggle " data-toggle="dropdown">A propos <b class="caret"></b></a>
 						<ul class="dropdown-menu">
-							<li class="active"><a href="#">Qui sommes nous </a></li>
+							<li class="active"><a href="{{ path('home_about') }}">Qui sommes nous </a></li>
 						</ul>
 					</li>
 					<li class="dropdown">

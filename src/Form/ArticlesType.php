@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Articles;
 use App\Entity\Categories;
+use App\Entity\Auteurs;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -34,6 +35,21 @@ class ArticlesType extends AbstractType
             
                 // Sur quelle propriete je fais le choix
                 'choice_label' => 'titre',
+                // used to render a select box, check boxes or radios
+                // 'multiple' => true,
+                //'expanded' => true,
+            ])
+        
+            ->add('auteurs', EntityType::class, [
+                // Label du champ    
+                'label'  => 'Auteurs',
+                'placeholder' => 'Auteurs',
+        
+                // looks for choices from this entity
+                'class' => Auteurs::class,
+            
+                // Sur quelle propriete je fais le choix
+                'choice_label' => 'noms',
                 // used to render a select box, check boxes or radios
                 // 'multiple' => true,
                 //'expanded' => true,
