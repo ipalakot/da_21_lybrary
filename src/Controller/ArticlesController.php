@@ -3,7 +3,9 @@
 namespace App\Controller;
 
 use App\Entity\Articles;
+use App\Entity\Commentaires;
 use App\Form\ArticlesType;
+use App\Form\CommentairesType;
 use App\Repository\ArticlesRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -51,10 +53,36 @@ class ArticlesController extends AbstractController
     /**
      * @Route("/{id}", name="articles_show", methods={"GET"})
      */
-    public function show(Articles $article): Response
+    public function show(Articles $article, Request $request): Response
     {
-        return $this->render('articles/show.html.twig', [
-            'article' => $article,
+        $commentaires = new Commentaires();
+        $commentairesForm = $this->createForm(CommentairesType::class, $commentaires);
+
+       /* $form = $this->createFormBuilder($commentaires)
+                ->add('auteur')
+                ->add('contentaires', CKEditorType::class) 
+
+                ->getForm(); */
+       
+        $commentairesForm->handleRequest($request);
+
+        if($commentairesForm->isSubmitted() && $form->isValid()) {
+            $commentaires->setDate(new \DateTime())
+                     ->setArtcileComm($article);
+            $manager->persist($commentaires);
+
+            $manager->flush();
+
+            return $this->redirectToRoute('articles_show',  ['id' => $article->getId()
+            ]);
+    }
+
+    return $this->render('articles/show.html.twig', [
+        'article' => $article,
+        'commentairesForm'=> $commentairesForm->createView()
+        //'articles2' => $articlesles2,
+        //'commentaires '=> $commentaires ,
+
         ]);
     }
 

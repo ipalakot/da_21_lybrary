@@ -15,7 +15,7 @@ class CommentairesType extends AbstractType
             ->add('auteur')
             ->add('date')
             ->add('contenu')
-            ->add('artcile_comm')
+            //->add('artcile_comm')
         ;
     }
 

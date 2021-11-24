@@ -63,12 +63,13 @@
                 {% endfor %} 
         </div>
 
-{# 
+   <!-- Affichage du Formulaire de Commentaire -->
+
 <div>
     <p class="bg-primary text-white">Ajouter votre commentaire  </p>
-                         {{ include('commentaires/_form.html.twig') }}
+                         {{include('commentaires/_form.html.twig') }}
 
-</div> #}
+</div> 
     <a href="{{ path('articles_index') }}">Liste des Atricles </a> <br><br>
 
     <a href="{{ path('articles_edit', {'id': article.id}) }}">Editer</a> <br><br>
