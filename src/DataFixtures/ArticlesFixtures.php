@@ -64,12 +64,12 @@ class ArticlesFixtures extends Fixture
                         {
                             $commentaires = New Commentaires();
 
-                            $days = (new \DateTime())->diff ($articles->getDate())->days;
+                            $days = (new \DateTime());
                          // 	$minimum = '-'.$days.'days';
                             
                             $commentaires->setAuteur($faker->name)
                                     ->setContenu($faker->realText($maxNbChars = 200, $indexSize = 2))
-                                    ->setDate($faker->dateTimeBetween('-'. $days. 'days'))
+                                    ->setDate($faker->dateTime())
                                     ->setArtcileComm($articles);
                             
                                     $manager-> persist($commentaires);
