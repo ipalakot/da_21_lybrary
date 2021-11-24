@@ -3,6 +3,7 @@
 namespace App\DataFixtures;
 
 use App\Entity\Articles;
+use App\Entity\Auteurs;
 use App\Entity\Categories;
 use App\Entity\Commentaires;
 
@@ -20,7 +21,7 @@ class ArticlesFixtures extends Fixture
         $faker = Faker\Factory::create('fr_FR');
 
          // Creer occurence de 5 Categroie
-        for ($i=0; $i<5 ; $i++ ) 
+        for ($i=0; $i<2 ; $i++ ) 
         { 
             $categories = new Categories();
             
@@ -28,9 +29,23 @@ class ArticlesFixtures extends Fixture
                     ->setResume($faker->sentence());
             
             $manager->persist($categories);
+
+
+        // Creer occurence de 5 Categroie
+        for ($l=0; $l<2 ; $l++ ) 
+        { 
+            $auteurs = new Auteurs();
+            
+            $auteurs->setNoms($faker->sentence())
+                    ->setPrenoms($faker->sentence())
+                    ->setMails($faker->sentence());
+            
+            $manager->persist($auteurs);
+
+
         
                 // Mainteannt je cree mes Articles
-                for ($j=0; $j<10 ; $j++ ) 
+                for ($j=0; $j<3 ; $j++ ) 
                 { 
                     $articles = new Articles();
                     
@@ -39,7 +54,8 @@ class ArticlesFixtures extends Fixture
                             //->setResume($faker->sentence())
                             ->setContenu($faker->text($maxNbChars = 250)) 
                             ->setDate(new \DateTime())
-                            ->setCategory($categories);
+                            ->setCategory($categories)
+                            ->setAuteurs($auteurs);
                         $manager->persist($articles);
                 
                         // Creons des commentaires pour les articles 
@@ -59,8 +75,7 @@ class ArticlesFixtures extends Fixture
                                     $manager-> persist($commentaires);
                         }
                 }
-            }
+            }}
      $manager->flush();
     }
 }
-

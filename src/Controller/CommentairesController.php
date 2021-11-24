@@ -42,8 +42,8 @@ class CommentairesController extends AbstractController
             return $this->redirectToRoute('commentaires_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->render('commentaires/new.html.twig', [
-            'commentaire' => $commentaire,
+        return $this->render('articles/show.html.twig', [
+            'commentaires' => $commentaire,
             'form' => $form->createView(),
         ]);
     }

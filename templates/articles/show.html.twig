@@ -3,42 +3,77 @@
 {% block title %}Articles{% endblock %}
 
 {% block body %} <br><br>
-    <h1><td>{{ article.title }}</td></h1>
+    <h1><td style="text-align:left">{{ article.title }}</td></h1>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ article.id }}</td>
-            </tr>
-            <tr>
-                <th>Title</th>
-                <td>{{ article.title }}</td>
-            </tr>
+<!-- container -->
 
-            <tr>
-                <th>Categories</th>
+<div class="container">
+    <!-- Article Principal -->
+        <tr>
+            <th>Id :</th>
+            <td>{{ article.id }}</td>
+        </tr> <br><br>
+        
+        <tr>
+            <th> Title :</th>
+            <td>{{ article.title }}</td>
+        </tr>
+
+        <tr>
+             <th>Categories :</th>
                 <td>{{ article.category.titre }}</td>
-            </tr>
-            
-            <tr>
-            <th></th>Resume</th>
-                 <td>{{ article.resume}}</td>
-            </tr>
-            <tr>
-                <th>Contenu</th>
-                <td>{{ article.contenu }}</td>
-            </tr>
-            <tr>
-                <th>Date</th>
-                <td>{{ article.date ? article.date|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-        </tbody>
-    </table>
+        </tr><br><br>
 
+        <tr>
+            <th>Auteurs :</th>
+            <td>{{ article.auteurs.noms }}</td>
+        </tr><br><br>
+
+        <tr>
+            <th></th>Resume :</th>
+            <td>{{ article.resume|raw}}</td>
+        </tr><br><br>
+        
+        <tr>
+            <th>Contenu</th>
+                <td>{{ article.contenu|raw }}</td>
+            </tr><br><br>
+        
+        <tr>
+            <th>Date</th>
+                 <td>{{ article.date ? article.date|date('Y-m-d H:i:s') : '' }}</td>
+        </tr> <br><br>
+
+    <!-- Affichage des Commentaires -->
+
+        <div>
+            <hr size="4" color="blue">
+                {% for commentaire in article.commentaires %}
+                    <div class="comment">
+                        <div class="row">
+                            <div class="col3">
+                                {{ commentaire.auteur }} (<small> {{ commentaire.date | date('d/m/Y ') }}</small>)
+                            </div>
+                            <div class="col">
+                                {{ commentaire.contenu |raw }}
+                            </div>
+                            <br>
+                        </div>
+                    </div>
+                {% endfor %} 
+        </div>
+
+{# 
+<div>
+    <p class="bg-primary text-white">Ajouter votre commentaire  </p>
+                         {{ include('commentaires/_form.html.twig') }}
+
+</div> #}
     <a href="{{ path('articles_index') }}">Liste des Atricles </a> <br><br>
 
     <a href="{{ path('articles_edit', {'id': article.id}) }}">Editer</a> <br><br>
 
     {{ include('articles/_delete_form.html.twig') }}
+</div>
+
 {% endblock %}

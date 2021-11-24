@@ -34,7 +34,6 @@ class Articles
 
     /**
      * @ORM\ManyToOne(targetEntity=Auteurs::class, inversedBy="articleaut")
-     * @ORM\JoinColumn(nullable=false)
      */
     private $auteurs;
 
@@ -63,9 +62,10 @@ class Articles
     private $contenu;
 
     /**
-     * @ORM\OneToMany(targetEntity=Commentaires::class, mappedBy="artcile_comm", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity="App\Entity\Commentaires", mappedBy="artcile_comm", orphanRemoval=true)
      */
     private $commentaires;
+
 
     public function __construct()
     {
