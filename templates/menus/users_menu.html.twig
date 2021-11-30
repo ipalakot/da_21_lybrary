@@ -30,10 +30,10 @@
 
 
 					<li><a href="#">Nous-Contacter</a></li>
-					<li><a href="{{ path('admin_index') }}">Admin</a></li>
+					<li><a href="{{ path('app_login') }}">Admin</a></li>
 				
-				{#	{% if not app.user %}
-						<li><a class="btn" href="#">Connexion </a></li>
+				{	{% if not app.user %}
+						<li><a class="btn" href="{{ path('app_login') }}">Connexion </a></li>
 					{% else %}
 		
 					<li class="dropdown">
@@ -47,8 +47,8 @@
 					</li>
 
 						<li><a class="btn btn-secondary" href="#" target="blank" >Admin</a></li>
-						<li><a class="btn btn-secondary" href="#"> LOG OUT</a></li>
-					{% endif %} #}
+						<li><a class="btn btn-secondary" href="{{path('app_logout') }}"> LOG OUT</a></li>
+					{% endif %} }
 
 				</ul>
 			</div><!--/.nav-collapse -->
