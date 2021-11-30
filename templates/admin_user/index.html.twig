@@ -9,10 +9,11 @@
         <thead>
             <tr>
                 <th>Id</th>
+                <th>Username</th>
                 <th>Email</th>
                 <th>Roles</th>
-                <th>Password</th>
-                <th>Username</th>
+                {# <th>Password</th> #}
+
                 <th>actions</th>
             </tr>
         </thead>
@@ -20,13 +21,26 @@
         {% for user in users %}
             <tr>
                 <td>{{ user.id }}</td>
-                <td>{{ user.email }}</td>
-                <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
-                <td>{{ user.password }}</td>
                 <td>{{ user.username }}</td>
+                <td>{{ user.email }}</td>
+               <td>{{ user.roles ? user.roles|json_encode : '' }}</td> 
+ {#
+                    {% for role in user.roles %}
+                        {% if role=="ROLE_USER" %}
+                            - Utilisateur </br>
+                            {% elseif role=="ROLE_EDITOR" %}
+                            - Editeur </br>
+                            {% elseif role=="ROLE_MODERA" %}
+                                - Moderateur </br>
+                            {% elseif role=="ROLE_ADMIN" %}
+                                - Administrator </br>
+                        {% endif %}
+                    {% endfor %}#}
+              {#  <td>{{ user.password }}</td> #}
+
                 <td>
-                    <a href="{{ path('admin_user_show', {'id': user.id}) }}">show</a>
-                    <a href="{{ path('admin_user_edit', {'id': user.id}) }}">edit</a>
+                    <a href="{{ path('admin_user_show', {'id': user.id}) }}">afficher | </a>
+                    <a href="{{ path('admin_user_edit', {'id': user.id}) }}">editer</a>
                 </td>
             </tr>
         {% else %}
