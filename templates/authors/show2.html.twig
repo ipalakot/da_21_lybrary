@@ -1,0 +1,34 @@
+{% extends 'base_admin.html.twig' %}
+
+{% block title %}Auteurs{% endblock %}
+
+{% block body %}
+    <br><br><h1>Auteur: {{ auteur.noms }} </h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ auteur.id }}</td>
+            </tr>
+            <tr>
+                <th>Noms</th>
+                <td>{{ auteur.noms }}</td>
+            </tr>
+            <tr>
+                <th>Prenoms</th>
+                <td>{{ auteur.prenoms }}</td>
+            </tr>
+            <tr>
+                <th>Mails</th>
+                <td>{{ auteur.mails }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('authors_index') }}">Liste des Auteurs | </a>
+
+    <a href="{{ path('authors_edit', {'id': auteur.id}) }}">Editer</a>
+
+    {{ include('authors/_delete_form.html.twig') }}
+{% endblock %}

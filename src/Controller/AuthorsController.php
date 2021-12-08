@@ -11,6 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+
 /**
  * @Route("/authors")
  */
@@ -48,6 +49,43 @@ class AuthorsController extends AbstractController
         ]);
     }
 
+    
+    /**
+     * Ceci est 1 exmple 
+     * Affiche en details d'un Auteur avec FindBY
+     * @Route("/recherche", name="search")
+    */
+    public function recherche(AuteursRepository $auteursrepo  ){
+
+        $auteurs =  $auteursrepo ->findBy (array 
+        (
+            'noms' => 'admin',
+            //'mails '=> 'test.mail.col'
+        ), array ('prenoms'=>"DESC"), 10,0);
+
+        return $this->render('authors/search.html.twig', [
+            'auteurs' => $auteurs,
+        ]);
+    }
+
+    /**
+     * Ceci est 1 exmple 
+     * Affiche en details d'un Auteur avec FindOneBY
+     * @Route("/recherche2", name="search")
+    */
+    public function recherche2(AuteursRepository $auteursrepo  ){
+
+        $auteurs =  $auteursrepo ->findOneBy (array 
+        (
+            'noms' => 'admin',
+            //'mails '=> 'test.mail.col'
+        ));
+
+        return $this->render('authors/search.html.twig', [
+            'auteurs' => $auteurs,
+        ]);
+    }
+
     /**
      * @Route("/{id}", name="authors_show", methods={"GET"})
      */
@@ -57,6 +95,36 @@ class AuthorsController extends AbstractController
             'auteur' => $auteur,
         ]);
     }
+
+
+
+    /**
+     * Ceci est 1 exmple 
+     * Affiche en details d'un Auteur
+     * @param $id
+     * @param AuteursRepository, $auteursrepo 
+     * @Route("/{id}", name="authors_show", methods={"GET"})
+    */
+    /*
+        public function affichage($id, AuteursRepository $auteursrepo  ) 
+        {
+            // Appel à Doctrine & au repository
+            // $auteursrepo = $this->getDoctrine()->getRepository(Autheur::class);
+            //Recherche d'un auteur avec son identifaint
+            $auteur = $auteursrepo->find($id);
+            // Passage à Twig de tableau avec des variables à utiliser
+        
+                if (!$auteur) {
+                throw $this->createNotFoundException(
+                    'Desolé il y a Aucun Auteur pour ce id : '.$id
+                );
+            }
+            return $this->render('authors/show2.html.twig', [
+                'auteur' => $auteur
+            ]);
+        }
+    */
+
 
     /**
      * @Route("/{id}/edit", name="authors_edit", methods={"GET", "POST"})

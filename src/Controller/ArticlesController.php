@@ -76,13 +76,32 @@ class ArticlesController extends AbstractController
             return $this->redirectToRoute('articles_show',  ['id' => $article->getId()
             ]);
     }
-
     return $this->render('articles/show.html.twig', [
         'article' => $article,
         'commentairesForm'=> $commentairesForm->createView()
         //'articles2' => $articlesles2,
         //'commentaires '=> $commentaires ,
 
+        ]);
+    }
+
+
+    /**
+     * Ceci est 1 exmple 
+     * Affiche en details d'un article
+     * @param $id
+     * @param ArticlesRepository, $articlesrepo 
+     * @Route("/{id}", name="articles_affich")
+    */
+    public function affichage($id, ArticlesRepository $articlesrepo ) 
+    {
+        // Appel à Doctrine & au repository
+        // $repo = $this->getDoctrine()->getRepository(Location::class);
+        //Recherche de l'article avec son identifaint
+        $articles = $articlesrepo->find($id);
+        // Passage à Twig de tableau avec des variables à utiliser
+        return $this->render('articles/affich.html.twig', [
+            'article' => $articles
         ]);
     }
 
