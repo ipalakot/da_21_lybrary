@@ -49,58 +49,9 @@ class AuthorsController extends AbstractController
         ]);
     }
 
-    
     /**
      * Ceci est 1 exmple 
-     * Affiche en details d'un Auteur avec FindBY
-     * @Route("/recherche", name="search")
-    */
-    public function recherche(AuteursRepository $auteursrepo  ){
-
-        $auteurs =  $auteursrepo ->findBy (array 
-        (
-            'noms' => 'admin',
-            //'mails '=> 'test.mail.col'
-        ), array ('prenoms'=>"DESC"), 10,0);
-
-        return $this->render('authors/search.html.twig', [
-            'auteurs' => $auteurs,
-        ]);
-    }
-
-    /**
-     * Ceci est 1 exmple 
-     * Affiche en details d'un Auteur avec FindOneBY
-     * @Route("/recherche2", name="search")
-    */
-    public function recherche2(AuteursRepository $auteursrepo  ){
-
-        $auteurs =  $auteursrepo ->findOneBy (array 
-        (
-            'noms' => 'admin',
-            //'mails '=> 'test.mail.col'
-        ));
-
-        return $this->render('authors/search.html.twig', [
-            'auteurs' => $auteurs,
-        ]);
-    }
-
-    /**
-     * @Route("/{id}", name="authors_show", methods={"GET"})
-     */
-    public function show(Auteurs $auteur): Response
-    {
-        return $this->render('authors/show.html.twig', [
-            'auteur' => $auteur,
-        ]);
-    }
-
-
-
-    /**
-     * Ceci est 1 exmple 
-     * Affiche en details d'un Auteur
+     * Affiche en details d'un Auteur avec Find()
      * @param $id
      * @param AuteursRepository, $auteursrepo 
      * @Route("/{id}", name="authors_show", methods={"GET"})
@@ -124,6 +75,59 @@ class AuthorsController extends AbstractController
             ]);
         }
     */
+
+    
+    /**
+     * Ceci est 1 exmple 
+     * Affiche en details d'un Auteur avec FindBY
+     * @Route("/recherche", name="search")
+    */
+    /* 
+        public function recherche(AuteursRepository $auteursrepo  ){
+
+        $auteurs =  $auteursrepo ->findBy (array 
+        (
+            'noms' => 'admin',
+            //'mails '=> 'test.mail.col'
+        ), array ('prenoms'=>"DESC"), 10,0);
+
+        return $this->render('authors/search.html.twig', [
+            'auteurs' => $auteurs,
+        ]);
+    } */
+
+
+    /**
+     * Ceci est 1 exmple 
+     * Affiche en details d'un Auteur avec FindOneBY
+     * @Route("/recherche2", name="search")
+    */
+
+    /*
+        public function recherche2(AuteursRepository $auteursrepo  ){
+
+            $auteurs =  $auteursrepo ->findOneBy (array 
+            (
+                'noms' => 'admin',
+                //'mails '=> 'test.mail.col'
+            ));
+
+            return $this->render('authors/search.html.twig', [
+                'auteurs' => $auteurs,
+            ]);
+        }
+    */
+
+    /**
+     * @Route("/{id}", name="authors_show", methods={"GET"})
+     */
+    public function show(Auteurs $auteur): Response
+    {
+        return $this->render('authors/show.html.twig', [
+            'auteur' => $auteur,
+        ]);
+    }
+
 
 
     /**
