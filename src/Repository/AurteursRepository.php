@@ -2,7 +2,7 @@
 
 namespace App\Repository;
 
-use App\Entity\Aurteurs;
+//use App\Entity\Aurteurs;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -18,6 +18,8 @@ class AurteursRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Aurteurs::class);
     }
+
+
 
     // /**
     //  * @return Aurteurs[] Returns an array of Aurteurs objects
@@ -35,6 +37,8 @@ class AurteursRepository extends ServiceEntityRepository
         ;
     }
     */
+
+
 
     /*
     public function findOneBySomeField($value): ?Aurteurs

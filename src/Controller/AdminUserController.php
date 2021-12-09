@@ -48,15 +48,52 @@ class AdminUserController extends AbstractController
         ]);
     }
 
+
+
+    /**
+     * Ceci est 1 exmple 
+     * Affiche en details d'un Auteur avec FindBYParamatre(Valeur)
+     * @Route("/search", name="admin_user_show")
+    */
+/*
+            public function search(UserRepository $userrepo  ){
+
+            $users =  $userrepo->findByUsername('admin');
+
+            return $this->render('admin_user/index.html.twig', [
+                'users' => $users,
+            ]);
+        } 
+ */       
+    /**
+     * Ceci est 1 exmple 
+     * Affiche en details un Auteur avec FindOneBYParamatre(Valeur)
+     * @Route("/search2", name="admin_user_show")
+    */
+/*
+            public function search2(UserRepository $userepo){
+
+            $users =  $userepo->findOneByEmail('admin@mail.com');
+
+            return $this->render('admin_user/index.html.twig', [
+                'users' => $users,
+            ]);
+        } 
+*/
+
+
+
     /**
      * @Route("/{id}", name="admin_user_show", methods={"GET"})
      */
-    public function show(User $user): Response
+  public function show(User $user): Response
     {
         return $this->render('admin_user/show.html.twig', [
             'user' => $user,
         ]);
     }
+
+
 
     /**
      * @Route("/{id}/edit", name="admin_user_edit", methods={"GET", "POST"})
