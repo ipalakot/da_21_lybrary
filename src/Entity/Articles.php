@@ -66,6 +66,11 @@ class Articles
      */
     private $commentaires;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $publish;
+
 
     public function __construct()
     {
@@ -183,6 +188,18 @@ class Articles
     public function __toString()
     {
         return $this->title;
+    }
+
+    public function getPublish(): ?bool
+    {
+        return $this->publish;
+    }
+
+    public function setPublish(bool $publish): self
+    {
+        $this->publish = $publish;
+
+        return $this;
     }
 
 

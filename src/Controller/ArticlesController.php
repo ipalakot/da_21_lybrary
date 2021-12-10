@@ -27,6 +27,22 @@ class ArticlesController extends AbstractController
         ]);
     }
 
+
+    /**
+     * @Route("/articles", name="articles_liste", methods={"GET"})
+     */
+    public function index2(ArticlesRepository $articlesRepository): Response
+    {
+        $articles= $articlesRepository->findByArticlesPublies();
+        
+        return $this->render('articles/index.html.twig', [
+            'articles' => $articles,
+        ]);
+    } 
+
+
+
+    
     /**
      * @Route("/new", name="articles_new", methods={"GET","POST"})
      */

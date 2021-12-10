@@ -20,6 +20,23 @@ class ArticlesRepository extends ServiceEntityRepository
     }
 
     // /**
+    //  * @return Articles[] Retourne un tableau d'objets d'articles 
+    //  */
+    
+    public function findByArticlesPublies()
+    {
+        $qb = $this->createQueryBuilder('a');
+
+        $qb
+            ->where('a.date IS NOT NULL');
+
+            
+
+        return $qb->getQuery()->getResult();
+    }
+
+    
+    // /**
     //  * @return Articles[] Returns an array of Articles objects
     //  */
     /*
