@@ -27,10 +27,9 @@ class ArticlesRepository extends ServiceEntityRepository
     {
         $qb = $this->createQueryBuilder('a');
 
-        $qb
-            ->where('a.date IS NOT NULL');
-
-            
+       // $qb
+              //->select('a.id', 'a.title', 'a.auteurs.nom');
+              //  ->where('a.publish IS NOT NULL');
 
         return $qb->getQuery()->getResult();
     }

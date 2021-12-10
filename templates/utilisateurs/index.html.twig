@@ -10,6 +10,7 @@
         <thead>
             <tr>
                 <th>Id</th>
+                <th>Civilité</th>                
                 <th>Nom</th>
                 <th>Prenoms</th>
                 {# <Datenaiss</#th> #}
@@ -22,6 +23,7 @@
         {% for utilisateur in utilisateurs %}
             <tr>
                 <td>{{ utilisateur.id }}</td>
+                <td>{{ utilisateur.civilite }}</td>
                 <td>{{ utilisateur.nom }}</td>
                 <td>{{ utilisateur.prenoms }}</td>
                 {# <td>{{ utilisateur.datenaiss ? utilisateur.datenaiss|date('Y-m-d H:i:s') : '' }}</td> #}

@@ -57,6 +57,11 @@ class Utilisateurs
      */
     private $email;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $civilite;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -126,5 +131,17 @@ class Utilisateurs
     {
         return
             $this->nom;
+    }
+
+    public function getCivilite(): ?string
+    {
+        return $this->civilite;
+    }
+
+    public function setCivilite(string $civilite): self
+    {
+        $this->civilite = $civilite;
+
+        return $this;
     }
 }

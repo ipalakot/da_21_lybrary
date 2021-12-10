@@ -71,6 +71,9 @@ class ArticlesType extends AbstractType
             ->add('date',            
                 DateType::class, 
                 ['label'=> 'Date'])
+
+
+            ->add('publish')
         ;
     }
 

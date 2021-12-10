@@ -27,6 +27,17 @@ class UtilisateursController extends AbstractController
     }
 
     /**
+     * @Route("/utilisateurs2", name="utilisateurs_index", methods={"GET"})
+     */
+    public function usersBySex(UtilisateursRepository $utilisateursRepository): Response
+    {
+         $utilisateurs= $utilisateursRepository->findByArticlesCivilites();
+         return $this->render('utilisateurs/index.html.twig', [
+            'utilisateurs' => $utilisateurs,
+        ]);
+    }
+
+    /**
      * @Route("/new", name="utilisateurs_new", methods={"GET","POST"})
      */
     public function new(Request $request): Response
