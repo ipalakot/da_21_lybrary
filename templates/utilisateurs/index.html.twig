@@ -16,6 +16,7 @@
                 {# <Datenaiss</#th> #}
                 {# <th>Adresse</th> #}
                 {# <th>Email</th> #}
+                <th>Statut</th>     
                 <th>Actions</th>
             </tr>
         </thead>
@@ -26,6 +27,7 @@
                 <td>{{ utilisateur.civilite }}</td>
                 <td>{{ utilisateur.nom }}</td>
                 <td>{{ utilisateur.prenoms }}</td>
+                  <td>{{ utilisateur.status }}</td> 
                 {# <td>{{ utilisateur.datenaiss ? utilisateur.datenaiss|date('Y-m-d H:i:s') : '' }}</td> #}
                {# <td>{{ utilisateur.adresse }}</td> #}
                 {# <td>{{ utilisateur.email }}</td>  #}

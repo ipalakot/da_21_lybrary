@@ -27,11 +27,22 @@ class UtilisateursController extends AbstractController
     }
 
     /**
-     * @Route("/utilisateurs2", name="utilisateurs_index", methods={"GET"})
+     * @Route("/utilisateurs2", name="utilisateurs_sex_index", methods={"GET"})
      */
-    public function usersBySex(UtilisateursRepository $utilisateursRepository): Response
+    public function usersSEX(UtilisateursRepository $utilisateursRepository): Response
     {
-         $utilisateurs= $utilisateursRepository->findByArticlesCivilites();
+         $utilisateurs= $utilisateursRepository->findUtilisateursCivilites();
+         return $this->render('utilisateurs/index.html.twig', [
+            'utilisateurs' => $utilisateurs,
+        ]);
+    }
+
+    /**
+     * @Route("/utilisateurs3", name="utilisateurspublish_index", methods={"GET"})
+     */
+    public function usersStatus(UtilisateursRepository $utilisateursRepository): Response
+    {
+         $utilisateurs= $utilisateursRepository->findUstilisateursstatus();
          return $this->render('utilisateurs/index.html.twig', [
             'utilisateurs' => $utilisateurs,
         ]);

@@ -19,14 +19,26 @@ class UtilisateursRepository extends ServiceEntityRepository
         parent::__construct($registry, Utilisateurs::class);
     }
 
-        public function findByArticlesCivilites()
+    public function findUtilisateursCivilites()
     {
         $qb = $this->createQueryBuilder('u');
 
         $qb
-            ->select('u.id', 'u.civilite', 'u.nom', 'u.prenoms', 'u.adresse')
+            ->select('u.id', 'u.civilite', 'u.nom', 'u.prenoms', 'u.adresse', 'u.status')
             ->where('u.civilite =:civilite ')
             ->setParameter('civilite', 'mr')
+            ->orderBy('u.nom', 'ASC');
+
+        return $qb->getQuery()->getResult();
+    }
+
+    public function findUstilisateursstatus()
+    {
+        $qb = $this->createQueryBuilder('u');
+        $qb
+            ->select('u.id', 'u.civilite', 'u.nom', 'u.prenoms', 'u.adresse', 'u.status')
+            ->where('u.status =:status ')
+            ->setParameter('status', '1')
             ->orderBy('u.nom', 'ASC');
 
         return $qb->getQuery()->getResult();

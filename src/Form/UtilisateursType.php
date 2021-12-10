@@ -40,6 +40,18 @@ class UtilisateursType extends AbstractType
             ->add('datenaiss')
             ->add('adresse', TextType::class, ['label'=> 'Adresse : '])
             ->add('email', EmailType::class, ['label'=> 'Email :'])
+            ->add('status', 
+                ChoiceType::class, 
+                [
+                    'choices' => 
+                    [
+                        'Public' => '1',
+                        'Archivé' => '0',
+                    ],
+                        'multiple'=>false,
+                        'expanded'=>true,
+
+            ])
         ;
     }
 
