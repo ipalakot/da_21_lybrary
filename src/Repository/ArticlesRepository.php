@@ -3,6 +3,8 @@
 namespace App\Repository;
 
 use App\Entity\Articles;
+use App\Entity\Auteurs;
+
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -20,21 +22,54 @@ class ArticlesRepository extends ServiceEntityRepository
     }
 
     // /**
-    //  * @return Articles[] Retourne un tableau d'objets d'articles 
+    //  * @return Articles[] Retourne un tableau d'objets d'articles publiés mais sans les auteurs et Categories
     //  */
     
-    public function findByArticlesPublies()
+    public function findArticlesPubliés()
     {
         $qb = $this->createQueryBuilder('a');
-
-       // $qb
-              //->select('a.id', 'a.title', 'a.auteurs.nom');
-              //  ->where('a.publish IS NOT NULL');
+        $qb
+            ->select('a.id', 'a.title', 'a.date', 'a.resume', 'a.status')
+            ->where('a.status =:status ')
+            ->setParameter('status', '1')
+            ->setMaxResults(5)
+            ->orderBy('a.title', 'ASC');
 
         return $qb->getQuery()->getResult();
     }
 
+    // /**
+    //  * @return Articles[] Retourne un tableau d'objets d'articles publiés mais par Auteurs cette fois avec les
+    //  */
     
+    public function findPublishArticlesAuteurs()
+    {
+        $qb = $this->createQueryBuilder('a');
+        $qb
+
+            ->innerJoin('App\Entity\Auteurs',  'o', 'WITH', 'o = a.auteurs')
+           // ->select('a.id', 'a.title', 'a.date', 'a.resume', 'a.status')
+            ->where('a.status =:status ')
+            ->setParameter('status', '1')
+         //   ->setMaxResults(5)
+            ->orderBy('a.title', 'ASC');
+        return $qb->getQuery()->getResult();
+    }
+    
+
+//Comment faire des jointures avec le QueryBuilder ?
+
+// Depuis le repository d'Article
+public function getArticleAvecCommentaires()
+{
+  $qb = $this->createQueryBuilder('a')
+             ->leftJoin('a.commentaires', 'c')
+             ->addSelect('c');
+  return $qb->getQuery()
+            ->getResult();
+}
+
+
     // /**
     //  * @return Articles[] Returns an array of Articles objects
     //  */

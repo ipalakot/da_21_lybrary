@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Articles;
+use App\Entity\Auteurs;
 use App\Entity\Commentaires;
 use App\Form\ArticlesType;
 use App\Form\CommentairesType;
@@ -29,11 +30,11 @@ class ArticlesController extends AbstractController
 
 
     /**
-     * @Route("/articles", name="articles_liste", methods={"GET"})
+     * @Route("/publies", name="articles_publies", methods={"GET"})
      */
-    public function index2(ArticlesRepository $articlesRepository): Response
+    public function articlesPublies(ArticlesRepository $articlesRepository): Response
     {
-        $articles= $articlesRepository->findByArticlesPublies();
+        $articles= $articlesRepository->findArticlesPubliés();
         
         return $this->render('articles/index.html.twig', [
             'articles' => $articles,
@@ -41,6 +42,31 @@ class ArticlesController extends AbstractController
     } 
 
 
+    /**
+     * @Route("/publies2", name="articles_publies2", methods={"GET"})
+     */
+    public function articlesPubliesAuteurs(ArticlesRepository $articlesRepository): Response
+    {
+        $articles= $articlesRepository->findPublishArticlesAuteurs();
+        
+        return $this->render('articles/index.html.twig', [
+            'articles' => $articles,
+        ]);
+    } 
+
+
+
+    /**
+     * @Route("/commentes", name="articles_commentes", methods={"GET"})
+     */
+    public function articlesCommentes(ArticlesRepository $articlesRepository): Response
+    {
+        $articles= $articlesRepository->getArticleAvecCommentaires();
+        
+        return $this->render('articles/index.html.twig', [
+            'articles' => $articles,
+        ]);
+    } 
 
     
     /**
