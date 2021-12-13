@@ -73,7 +73,18 @@ class ArticlesType extends AbstractType
                 ['label'=> 'Date'])
 
 
-            ->add('publish')
+            ->add('status', 
+                ChoiceType::class, 
+                [
+                    'choices' => 
+                    [
+                        'Public' => '1',
+                        'Archivé' => '0',
+                    ],
+                        'multiple'=>false,
+                        'expanded'=>true,
+
+            ])
         ;
     }
 

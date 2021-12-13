@@ -67,9 +67,9 @@ class Articles
     private $commentaires;
 
     /**
-     * @ORM\Column(type="boolean")
+     * @ORM\Column(type="string", length=255)
      */
-    private $publish;
+    private $status;
 
 
     public function __construct()
@@ -190,17 +190,19 @@ class Articles
         return $this->title;
     }
 
-    public function getPublish(): ?bool
+    public function getStatus(): ?string
     {
-        return $this->publish;
+        return $this->status;
     }
 
-    public function setPublish(bool $publish): self
+    public function setStatus(string $status): self
     {
-        $this->publish = $publish;
+        $this->status = $status;
 
         return $this;
     }
+
+
 
 
 }

@@ -39,6 +39,7 @@ class UtilisateursRepository extends ServiceEntityRepository
             ->select('u.id', 'u.civilite', 'u.nom', 'u.prenoms', 'u.adresse', 'u.status')
             ->where('u.status =:status ')
             ->setParameter('status', '1')
+            ->setMaxResults(5)
             ->orderBy('u.nom', 'ASC');
 
         return $qb->getQuery()->getResult();
