@@ -25,7 +25,10 @@ class ArticlesRepository extends ServiceEntityRepository
     //  * @return Articles[] Retourne un tableau d'objets d'articles publiés mais sans les auteurs et Categories
     //  */
     
-    public function findArticlesPubliés()
+   
+
+
+    
     {
         $qb = $this->createQueryBuilder('a');
         $qb
@@ -38,6 +41,8 @@ class ArticlesRepository extends ServiceEntityRepository
         return $qb->getQuery()->getResult();
     }
 
+
+    
     // /**
     //  * @return Articles[] Retourne un tableau d'objets d'articles publiés mais par Auteurs cette fois avec les
     //  */

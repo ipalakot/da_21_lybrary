@@ -19,6 +19,7 @@ class UtilisateursRepository extends ServiceEntityRepository
         parent::__construct($registry, Utilisateurs::class);
     }
 
+
     public function findUtilisateursCivilites()
     {
         $qb = $this->createQueryBuilder('u');
@@ -32,6 +33,7 @@ class UtilisateursRepository extends ServiceEntityRepository
         return $qb->getQuery()->getResult();
     }
 
+    
     public function findUstilisateursstatus()
     {
         $qb = $this->createQueryBuilder('u');
