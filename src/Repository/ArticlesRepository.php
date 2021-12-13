@@ -56,6 +56,25 @@ class ArticlesRepository extends ServiceEntityRepository
         return $qb->getQuery()->getResult();
     }
     
+    // /**
+    //  * @return Articles[] Retourne un tableau d'objets d'articles publiés par un seul Autuers
+    //  */
+        public function findPublishArticlesOneAuteurs()
+    {
+        $qb = $this->createQueryBuilder('a');
+        $qb
+
+            ->innerJoin('App\Entity\Auteurs',  'o', 'WITH', 'o = a.auteurs')
+           // ->select('a.id', 'a.title', 'a.date', 'a.resume', 'a.status')
+            ->where('a.status =:status ')
+            ->setParameter('status', '1')
+            ->andWhere('o.noms like :noms')
+            ->setParameter('noms', 'Omega')
+         //   ->setMaxResults(5)
+            ->orderBy('a.title', 'ASC');
+        return $qb->getQuery()->getResult();
+    }
+    
 
 //Comment faire des jointures avec le QueryBuilder ?
 

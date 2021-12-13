@@ -54,7 +54,17 @@ class ArticlesController extends AbstractController
         ]);
     } 
 
-
+    /**
+     * @Route("/publiesbyaut", name="articles_publiesbyaut", methods={"GET"})
+     */
+    public function articlesPubliesOneAuteurs(ArticlesRepository $articlesRepository): Response
+    {
+        $articles= $articlesRepository->findPublishArticlesOneAuteurs();
+        
+        return $this->render('articles/index.html.twig', [
+            'articles' => $articles,
+        ]);
+    }
 
     /**
      * @Route("/commentes", name="articles_commentes", methods={"GET"})
