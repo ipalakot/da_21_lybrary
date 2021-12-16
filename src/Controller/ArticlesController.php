@@ -14,12 +14,12 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/articles")
+ * @Route("/articles", name="articles_")
  */
 class ArticlesController extends AbstractController
 {
     /**
-     * @Route("/", name="articles_index", methods={"GET"})
+     * @Route("/", name="index", methods={"GET"})
      */
     public function index(ArticlesRepository $articlesRepository): Response
     {
@@ -30,7 +30,7 @@ class ArticlesController extends AbstractController
 
 
     /**
-     * @Route("/publies", name="articles_publies", methods={"GET"})
+     * @Route("/publies", name="publies", methods={"GET"})
      */
     public function articlesPublies(ArticlesRepository $articlesRepository): Response
     {
@@ -43,11 +43,11 @@ class ArticlesController extends AbstractController
 
 
     /**
-     * @Route("/publies2", name="articles_publies2", methods={"GET"})
+     * @Route("/publies_auteurs", name="publies_auteurs", methods={"GET"})
      */
     public function articlesPubliesAuteurs(ArticlesRepository $articlesRepository): Response
     {
-        $articles= $articlesRepository->findPublishArticlesAuteurs();
+        $articles= $articlesRepository->findByPublishArticlesOneAuteurs();
         
         return $this->render('articles/index.html.twig', [
             'articles' => $articles,
@@ -55,11 +55,11 @@ class ArticlesController extends AbstractController
     } 
 
     /**
-     * @Route("/publiesbyaut", name="articles_publiesbyaut", methods={"GET"})
+     * @Route("/publies_one_aut", name="publies_one_aut", methods={"GET"})
      */
     public function articlesPubliesOneAuteurs(ArticlesRepository $articlesRepository): Response
     {
-        $articles= $articlesRepository->findPublishArticlesOneAuteurs();
+        $articles= $articlesRepository->findByPublishArticlesOneAuteurs2();
         
         return $this->render('articles/index.html.twig', [
             'articles' => $articles,
@@ -67,7 +67,7 @@ class ArticlesController extends AbstractController
     }
 
     /**
-     * @Route("/commentes", name="articles_commentes", methods={"GET"})
+     * @Route("/commentes", name="commentes", methods={"GET"})
      */
     public function articlesCommentes(ArticlesRepository $articlesRepository): Response
     {
@@ -78,9 +78,21 @@ class ArticlesController extends AbstractController
         ]);
     } 
 
-    
     /**
-     * @Route("/new", name="articles_new", methods={"GET","POST"})
+     * @Route("/article__cat_info", name="cat_info", methods={"GET"})
+     */
+    public function articlesCatInfo(ArticlesRepository $articlesRepository): Response
+    {
+        $articles= $articlesRepository->findArticlesInformatique();
+        
+        return $this->render('articles/index.html.twig', [
+            'articles' => $articles,
+        ]);
+    } 
+
+
+    /**
+     * @Route("/new", name="new", methods={"GET","POST"})
      */
     public function new(Request $request): Response
     {
@@ -103,7 +115,7 @@ class ArticlesController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="articles_show", methods={"GET"})
+     * @Route("/{id}", name="show", methods={"GET"})
      */
     public function show(Articles $article, Request $request): Response
     {
@@ -143,7 +155,7 @@ class ArticlesController extends AbstractController
      * Affiche en details d'un article
      * @param $id
      * @param ArticlesRepository, $articlesrepo 
-     * @Route("/{id}", name="articles_affich")
+     * @Route("/{id}", name="affich")
     */
     public function affichage($id, ArticlesRepository $articlesrepo ) 
     {
@@ -158,7 +170,7 @@ class ArticlesController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/edit", name="articles_edit", methods={"GET","POST"})
+     * @Route("/{id}/edit", name="edit", methods={"GET","POST"})
      */
     public function edit(Request $request, Articles $article): Response
     {
@@ -178,7 +190,7 @@ class ArticlesController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="articles_delete", methods={"POST"})
+     * @Route("/{id}", name="delete", methods={"POST"})
      */
     public function delete(Request $request, Articles $article): Response
     {

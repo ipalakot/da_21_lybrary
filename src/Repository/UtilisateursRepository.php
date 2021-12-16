@@ -32,7 +32,6 @@ class UtilisateursRepository extends ServiceEntityRepository
         return $qb->getQuery()->getResult();
     }
 
-
     public function findUstilisateursstatus()
     {
         $qb = $this->createQueryBuilder('u');
