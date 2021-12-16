@@ -5,6 +5,22 @@
 {% block body %}
    <br><br>
 
+   {{ form_start(form_search) }}
+
+            <div class="form-row align-items-end" >
+                <div class="col">
+                    {{ form_row(form_search.title) }}
+                </div>
+
+            <div class="col">
+                <div class="form-group">
+                    <button type="submit" class="btn btn-success">Rechercher</button>
+                </div>
+            </div>
+        </div>
+    {{ form_end(form_search) }}
+
+
 
     <h1>Tous les Articles</h1>
 

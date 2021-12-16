@@ -3,11 +3,13 @@
 namespace App\Controller;
 
 use App\Entity\Articles;
-use App\Entity\Auteurs;
+//use App\Entity\Auteurs;
 use App\Entity\Commentaires;
 use App\Form\ArticlesType;
 use App\Form\CommentairesType;
 use App\Repository\ArticlesRepository;
+use App\Entity\PropertySearch;
+use App\Form\PropertySearchType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -33,11 +35,30 @@ class ArticlesController extends AbstractController
      * @Route("/publies", name="publies", methods={"GET"})
      */
     public function articlesPublies(ArticlesRepository $articlesRepository): Response
-    {
-        $articles= $articlesRepository->findArticlesPubliés();
+        {
+        $propertySearch = new PropertySearch();
+        $form_search = $this->createForm(PropertySearchType::class,$propertySearch);
+        $form_search->handleRequest($request);
+        
+        //J'initialise A tableau des articles, 
+        $articles= [];
+        
+        if($form_search->isSubmitted() && $form_search->isValid()) {
+            $title = $propertySearch->gettitle();   
+                if ($title!="") 
+                //si on a fourni un nom d'article on affiche tous les articles ayant ce nom
+                $articles= $this->getDoctrine()->getRepository(Article::class)->findBy(['title' => $title] );
+                else   
+                // si aucun nom fourni, j'affiche tous les articles
+            $articles= $articlesRepository->findArticlesPubliés();
+        }
+
+        //$articles= $articlesRepository->findArticlesPubliés();
         
         return $this->render('articles/index.html.twig', [
             'articles' => $articles,
+            'form_search' => $form_search->createView(),
+            //'form_search' => $form_search->createView()
         ]);
     } 
 
