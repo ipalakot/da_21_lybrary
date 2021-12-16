@@ -34,7 +34,7 @@ class HomeController extends AbstractController
         $articles = [];
         
         if($form_search->isSubmitted() && $form_search->isValid()) {
-            $title = $propertySearch->gettitle();   
+            $title = $propertySearch->getTitle();   
                 if ($title!="") 
                 //si on a fourni un nom d'article on affiche tous les articles ayant ce nom
                 $articles= $articlesRepository->findBy(['title' => $title] );
@@ -44,6 +44,7 @@ class HomeController extends AbstractController
             $articles = $articlesRepository->findAll();
         }
 
+        
         //$articles= $articlesRepository->findArticlesPubliés();
         
         return $this->render('home/index.html.twig', [
