@@ -18,7 +18,15 @@
             <th> Title :</th>
             <td>{{ article.title }}</td>
         </tr>
-  <img src="{{ vich_uploader_asset(article, 'imageFile') }}" class="img-fluid img-thumbnail" alt="{{ article.title }}">
+
+        <div>
+        <tr>
+            
+            <img src="{{ vich_uploader_asset(article, 'imageFile') | imagine_filter('medium')}}" class="img-fluid img-thumbnail" alt="{{ article.title }}">
+        </tr>
+        </div>
+        
+        
         <tr>
              <th>Categories :</th>
                 <td>{{ article.category.titre }}</td>
