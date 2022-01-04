@@ -50,13 +50,14 @@ class ArticlesFixtures extends Fixture
                     $articles = new Articles();
                     
                     $articles->setTitle($faker->sentence($nb = 5, $asText = false))
-                            //->setImage($faker->imageUrl($width = 640, $height = 480))
+                            ->setImageName($faker->text()) 
                             //->setResume($faker->sentence())
                             ->setContenu($faker->text($maxNbChars = 250)) 
                             ->setDate(new \DateTime())
                             ->setStatus($faker->boolean())
                             ->setCategory($categories)
                             ->setAuteurs($auteurs);
+                            
                         $manager->persist($articles);
                 
                         // Creons des commentaires pour les articles 

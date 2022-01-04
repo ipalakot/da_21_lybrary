@@ -14,6 +14,8 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Vich\UploaderBundle\Form\Type\VichImageType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 
 class ArticlesType extends AbstractType
 {
@@ -25,6 +27,10 @@ class ArticlesType extends AbstractType
                     'label'=> 'Titre',
                     'attr' => ['placeholder' => 'Titre'],
                 ])
+            
+            ->add('imageFile', VichImageType::class, [
+                'label' => 'Image à inserrer'
+            ])
 
             ->add('category', EntityType::class, [
                 // Label du champ    

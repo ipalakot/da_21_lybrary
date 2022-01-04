@@ -33,7 +33,7 @@
                 <td>{{ article.date ? article.date|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ article.status}}</td>
                 <td>
-                    <a href="{{ path('articles_show', {'id': article.id}) }}">afficher |</a>
+                    <a href="{{ path('articles_show', {'slug': article.slug}) }}">afficher |</a>
                     <a href="{{ path('articles_edit', {'id': article.id}) }}">editer |</a>
                 </td>
             </tr>
