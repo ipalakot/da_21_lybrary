@@ -54,7 +54,7 @@ class ArticlesFixtures extends Fixture
                             //->setResume($faker->sentence())
                             ->setContenu($faker->text($maxNbChars = 250)) 
                             ->setDate(new \DateTime())
-                            ->setPublish($faker->boolean())
+                            ->setStatus($faker->boolean())
                             ->setCategory($categories)
                             ->setAuteurs($auteurs);
                         $manager->persist($articles);

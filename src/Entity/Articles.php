@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ArticlesRepository")
@@ -31,6 +32,14 @@ class Articles
      * )
      */
     private $title;
+
+
+    /**
+     * @ORM\Column(type="string", length=255, unique=true, nullable=true)
+     * @Gedmo\Slug(fields={"title"})
+     */
+    private $slug;
+
 
     /**
      * @ORM\ManyToOne(targetEntity=Auteurs::class, inversedBy="articleaut")
@@ -95,6 +104,18 @@ class Articles
         return $this;
     }
 
+     public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    public function setSlug(string $slug): self
+    {
+        $this->slug = $slug;
+
+        return $this;
+    }
+    
     public function getContenu(): ?string
     {
         return $this->contenu;

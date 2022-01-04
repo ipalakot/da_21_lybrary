@@ -28,7 +28,7 @@
                 <td>{{ article.resume}}</td>
                 <td>{{ article.date ? article.date|date('Y-m-d') : '' }}</td>
                 <td>
-                    <a href="{{ path('articles_show', {'id': article.id}) }}">afficher |</a>
+                    <a href="{{ path('articles_show', {'slug': article.slug}) }}">afficher |</a>
                 </td>
             </tr>
         {% else %}

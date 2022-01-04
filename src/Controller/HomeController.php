@@ -10,6 +10,8 @@ use App\Repository\ArticlesRepository;
 
 use App\Entity\PropertySearch;
 use App\Form\PropertySearchType;
+use App\Entity\CategorySearch;
+use App\Form\CategorySearchType;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 //use Symfony\Component\HttpFoundation\Request;
@@ -53,6 +55,38 @@ class HomeController extends AbstractController
         'form_search' => $form_search->createView(),
         ]);
     }
+
+    
+    /**
+    * @Route("/search_art_cat", name="search_artic_by_cat")
+    * Method({"GET", "POST"})
+    */
+
+    public function articlesParCategorie(ArticlesRepository $articlesRepository,Request $request) {
+
+      $categorySearch = new CategorySearch();
+      $form_search = $this->createForm(CategorySearchType::class, $categorySearch);
+      $form_search->handleRequest($request);
+
+      $articles= [];
+
+      if($form_search->isSubmitted() && $form_search->isValid()) {
+        $category = $categorySearch->getCategory();
+       
+        if ($category!="") 
+        {
+          $articles= $category->getArticles();
+        }
+        else   
+          $articles= $articlesRepository->findAll();
+        }
+      
+      return $this->render('home/index.html.twig',[
+          'form_search' => $form_search->createView(),
+          'articles' => $articles]);
+  }
+  
+  
 
     /**
      * @Route("/aprpos", name="home_about")

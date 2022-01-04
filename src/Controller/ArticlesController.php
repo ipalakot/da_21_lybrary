@@ -136,7 +136,7 @@ class ArticlesController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="show", methods={"GET"})
+     * @Route("/{slug}", name="show", methods={"GET"})
      */
     public function show(Articles $article, Request $request): Response
     {
@@ -158,7 +158,7 @@ class ArticlesController extends AbstractController
 
             $manager->flush();
 
-            return $this->redirectToRoute('articles_show',  ['id' => $article->getId()
+            return $this->redirectToRoute('articles_show',  ['slug' => $article->getSlug()
             ]);
     }
     return $this->render('articles/show.html.twig', [
