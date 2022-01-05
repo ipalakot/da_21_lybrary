@@ -3,21 +3,59 @@ liip_imagine:
   # valid drivers options include "gd" or "gmagick" or "imagick"
   driver: "gd"
 
+  # La liste des filtres
   filter_sets:
-    thumb:
-      # adjust the image quality to 60%
+    # Nom du Filtre (small)
+    small:
+      # réglez la qualité de l'image sur 60%
       quality: 50
 
-      # list of transformations to apply (the "filters")
+      # liste des transformations à appliquer sur les "filtres"
       filters:
         thumbnail:
-          size: [250, 100]
+          # Taille de l'image de sortie
+          size: [150, 150]
 
     medium:
-      # adjust the image quality to 75%
       quality: 70
-      # list of transformations to apply (the "filters")
       filters:
         thumbnail:
           size: [800, 200]
           mode: outbond
+
+    carre:
+      quality: 80
+      filters:
+        thumbnail:
+          size: [200, 200]
+          mode: outbond
+
+    rectangle:
+      quality: 70
+      filters:
+        thumbnail:
+          size: [400, 200]
+          mode: outbond
+
+    echelle:
+      quality: 80
+      filters:
+        scale:
+          dim: [300, 300]
+          mode: outbond
+
+    article_logo:
+      quality: 80
+          filters:
+              upscale:
+                  min: [800, 400]
+              thumbnail:
+                  size: [800, 400]
+                  mode: outbound
+              watermark:
+                  # chemin vers le fichier
+                  image: ../public/assets/logo/guinot.png
+                  # Taille relative de l'image
+                  size: 0.1
+                  # set the position of the watermark
+                  position: bottomright

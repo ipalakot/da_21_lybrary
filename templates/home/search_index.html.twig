@@ -1,0 +1,67 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Articles index{% endblock %}
+
+{% block body %}
+   <br><br>
+
+<br><br>
+<div class="container">
+   {{ form_start(form_search) }}
+
+            <div class="form-row align-items-end" >
+                <div class="col">
+                    {#{ form_row(form_search.title) }#}
+                </div>
+
+            <div class="col">
+                <div class="form-group">
+                    <button type="submit" class="btn btn-success">Rechercher</button>
+                </div>
+            </div>
+        </div>
+    {{ form_end(form_search) }}
+</div>
+
+    <h1>Tous les Articles</h1>
+{% if articles %}
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Auteurs</th> 
+              {#   <th>Categorie</th>#}
+                <th>Resumé</th>
+                <th>Date Création</th>
+                <th>Visible</th>
+
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for article in articles %}
+            <tr>
+                <td>{{ article.id }}</td>
+                <td>{{ article.title }}</td>
+               <th>{{ article.auteurs.noms}}</th>
+               {# <td>{{ article.category.titre}}</td>#}
+                        <td>{{ article.resume}}</td>
+                <td>{{ article.date ? article.date|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ article.status}}</td>
+                <td>
+                    <a href="{{ path('articles_show', {'id': article.id}) }}">afficher |</a>
+                    <a href="{{ path('articles_edit', {'id': article.id}) }}">editer |</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">Aucun article pour lemoment !</td>
+            </tr>
+        {% endfor %}
+          {% endif %} 
+        </tbody>
+    </table>
+
+    <a href="{{ path('articles_new') }}">Creation </a>
+{% endblock %}
