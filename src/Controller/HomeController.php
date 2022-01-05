@@ -56,7 +56,40 @@ class HomeController extends AbstractController
         ]);
     }
 
+     /**
+     * @Route("/search", name="search_accueil")
+     */
+    public function search(ArticlesRepository $articlesRepository, Request $request): Response
+    {
+        $propertySearch = new PropertySearch();
+        $form_search = $this->createForm(PropertySearchType::class,$propertySearch);
+        $form_search->handleRequest($request);
+        
+        //J'initialise A tableau des articles, 
+        $articles = [];
+        
+        if($form_search->isSubmitted() && $form_search->isValid()) {
+            $title = $propertySearch->getTitle();   
+                if ($title!="") 
+                //si on a fourni un nom d'article on affiche tous les articles ayant ce nom
+                $articles= $articlesRepository->findBy(['title' => $title] );
+                else   
+                // si aucun nom fourni, j'affiche tous les articles
+            // $articles= $articlesRepository->findArticlesPubliés();
+            $articles = $articlesRepository->findAll();
+        }
+
+        //$articles= $articlesRepository->findArticlesPubliés();
+        
+        return $this->render('home/index.html.twig', [
+            'controller_name' => 'HomeController',
+        'articles' => $articles,
+        'form_search' => $form_search->createView(),
+        ]);
+    }
+
     
+
     /**
     * @Route("/search_art_cat", name="search_artic_by_cat")
     * Method({"GET", "POST"})
