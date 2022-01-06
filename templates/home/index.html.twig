@@ -9,35 +9,32 @@
     <h3>DWWM / 2021-2022</h3>
 
 
-{% if articles %}
-    <table class="table">
 
-        <tbody>
-        <div class="container">
-{% for article in articles %}
-            <tr>
-                <td>{{ article.id }}</td>
-                <td>{{ article.title }}
-                <img src="{{ vich_uploader_asset(article, 'imageFile')| imagine_filter('thumb')  }}" class="img-fluid img-thumbnail" alt="{{ article.title }}"></td>
-                
-               <th>{{ article.auteurs.noms}}</th>
-               {# <td>{{ article.category.titre}}</td>#}
-                        <td>{{ article.resume}}</td>
-                <td>{{ article.date ? article.date|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ article.status}}</td>
-                <td>
+<div class="container">
+     <!-- Article main content -->
+	<article class="col-md-12 maincontent">
+        {% for article in articles %}
+         <tr>
+             <td>{{ article.id }}</td>
+             <td>{{ article.title }}
+             <img src="{{ vich_uploader_asset(article, 'imageFile')| imagine_filter('carre')  }}" class="img-fluid img-thumbnail" alt="{{ article.title }}"></td>        
+                 <th>{{ article.auteurs.noms}}</th>
+                 {# <td>{{ article.category.titre}}</td>#}
+                 <td>{{ article.resume}}</td>
+                 <td>{{ article.date ? article.date|date('Y-m-d H:i:s') : '' }}</td>
+                 <td>{{ article.status}}</td>
+                 <td>
                     <a href="{{ path('articles_show', {'slug': article.slug}) }}">afficher |</a>
                     <a href="{{ path('articles_edit', {'id': article.id}) }}">editer |</a>
-                </td>
-            </tr>
+                 </td>
+         </tr>
+        
         {% else %}
             <tr>
                 <td colspan="5">Aucun article pour lemoment !</td>
             </tr>
         {% endfor %}
-          {% endif %} 
-        </tbody>
-    </table>
+          
 
     <a href="{{ path('articles_new') }}">Creation </a>
 </div>

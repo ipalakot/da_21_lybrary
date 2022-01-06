@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\Articles;
 use App\Entity\Categories;
 use App\Entity\Auteurs;
+use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -63,14 +64,14 @@ class ArticlesType extends AbstractType
             ])
         
             ->add('resume', 
-                TextareaType::class, [
+                CKEditorType::class, [
                     'label'=> 'Resume',
                     'attr' => ['placeholder' => 'Un resumé pour cet article'],
                 ])
 
 
             ->add('contenu', 
-                TextareaType::class, [
+                CKEditorType::class, [
                     'label'=> 'Contenu',
                     'attr' => ['placeholder' => 'Contenu '],
                 ])
@@ -88,7 +89,7 @@ class ArticlesType extends AbstractType
                         'Public' => '1',
                         'Home' => '0',
                     ],
-                        'multiple'=>true,
+                        'multiple'=>false,
                         'expanded'=>true,
 
             ])
