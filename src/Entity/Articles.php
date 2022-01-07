@@ -29,7 +29,7 @@ class Articles
      * @ORM\Column(type="string", length=255)
      * @Assert\Length(
      *      min = 2,
-     *      max = 50,
+     *      max = 150,
      *      minMessage = "Le titre doit avoir 1 minimum de {{ limit }} characteres long",
      *      maxMessage = "Votre Titre de ne pas depasser {{ limit }} characteres"
      * )
@@ -63,7 +63,13 @@ class Articles
 
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\Column(type="string", length=1000)
+     * @Assert\Length(
+     *      min = 300,
+     *      max = 1000,
+     *      minMessage = "Le titre doit avoir 1 minimum de {{ limit }} characteres long",
+     *      maxMessage = "Votre Titre de ne pas depasser {{ limit }} characteres"
+     * )
      */
     private $resume;
 

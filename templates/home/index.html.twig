@@ -13,30 +13,26 @@
 <div class="container">
      <!-- Article main content -->
 	<article class="col-md-12 maincontent">
-        {% for article in articles %}
-         <tr>
-             <td>{{ article.id }}</td>
-             <td>{{ article.title }}
-             <img src="{{ vich_uploader_asset(article, 'imageFile')| imagine_filter('carre')  }}" class="img-fluid img-thumbnail" alt="{{ article.title }}"></td>        
-                 <th>{{ article.auteurs.noms}}</th>
-                 {# <td>{{ article.category.titre}}</td>#}
-                 <td>{{ article.resume}}</td>
-                 <td>{{ article.date ? article.date|date('Y-m-d H:i:s') : '' }}</td>
-                 <td>{{ article.status}}</td>
-                 <td>
-                    <a href="{{ path('articles_show', {'slug': article.slug}) }}">afficher |</a>
-                    <a href="{{ path('articles_edit', {'id': article.id}) }}">editer |</a>
-                 </td>
-         </tr>
-        
-        {% else %}
-            <tr>
-                <td colspan="5">Aucun article pour lemoment !</td>
-            </tr>
-        {% endfor %}
-          
 
-    <a href="{{ path('articles_new') }}">Creation </a>
+        <div class="container">
+		<div class="row">	
+            {% for article in articles %}					
+                <div class="col-lg-6  col-md-6 col-sm-6 col-xs-12 border: 1px">
+                	<div class="pull-left">
+						 <a href="{{ path('articles_show', {id: article.id, slug: article.slug }) }}">
+                         	 <img src="{{vich_uploader_asset(article, 'imageFile') | imagine_filter('article') }}" class="img-fluid img-thumbnail" alt=""   >
+						      <br>
+                        	  <strong> {{ article.title }} </strong> 
+						 </a><br>
+							{{ article.resume | raw | striptags|slice(0, 400) ~ '...' }}  
+							<a href="{{ path('articles_show', {id: article.id, slug: article.slug }) }}" class="btn btn-warning btn-sm">Lire la suite...</a>
+                    </div>
+                </div>		
+            {% endfor %}
+		</div>
+    </div>
+
+   {# <a href="{{ path('articles_new') }}">Creation </a> #} 
 </div>
 
         

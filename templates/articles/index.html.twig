@@ -12,6 +12,7 @@
         <thead>
             <tr>
                 <th>Id</th>
+                 <th>Image</th>
                 <th>Title</th>
                 <th>Auteurs</th> 
               {#   <th>Categorie</th>#}
@@ -26,6 +27,7 @@
         {% for article in articles %}
             <tr>
                 <td>{{ article.id }}</td>
+                <td> <img src="{{vich_uploader_asset(article, 'imageFile') | imagine_filter('rectangle') }}" class="img-fluid img-thumbnail" alt=""   ></td>
                 <td>{{ article.title }}</td>
                <th>{{ article.auteurs.noms}}</th>
                {# <td>{{ article.category.titre}}</td>#}
