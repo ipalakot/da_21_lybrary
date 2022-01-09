@@ -6,6 +6,13 @@
    <br><br>
 
 
+
+<div class="container">
+     <!-- Article main content -->
+	<article class="col-md-12 maincontent">
+        <div class="container">
+			<div class="row">	
+
     <h1>Tous les Articles</h1>
 
     <table class="table">
@@ -33,7 +40,7 @@
                {# <td>{{ article.category.titre}}</td>#}
                         <td>{{ article.resume}}</td>
                 <td>{{ article.date ? article.date|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ article.status}}</td>
+               {# <td>{{ article.status}}</td> #}
                 <td>
                     <a href="{{ path('articles_show', {'slug': article.slug}) }}">afficher |</a>
                     <a href="{{ path('articles_edit', {'id': article.id}) }}">editer |</a>
@@ -48,4 +55,10 @@
     </table>
 
     <a href="{{ path('articles_new') }}">Creation </a>
+			</div> 
+		</div>
+    </article></div>
+
+</div>
+
 {% endblock %}

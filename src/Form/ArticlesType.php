@@ -87,9 +87,10 @@ class ArticlesType extends AbstractType
                     'choices' => 
                     [
                         'Public' => '1',
-                        'Home' => '0',
+                        'Archives'=>'2',
+                        'Accueil' => '3',
                     ],
-                        'multiple'=>false,
+                        'multiple'=>true,
                         'expanded'=>true,
 
             ])

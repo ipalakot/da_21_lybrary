@@ -22,12 +22,29 @@ class ArticlesRepository extends ServiceEntityRepository
         parent::__construct($registry, Articles::class);
     }
     
-    
     /**
-     * Aarticles Publiés 
+     * Liste des articles de la Cat Admin . Ici nous utilisons pour à Propos
+     * @return Articles[] Returns an array of Articles objects
+     */
+    public function findArticlesAbout()
+    {
+        $qb = $this->createQueryBuilder('a');
+        $qb
+
+            ->innerJoin('App\Entity\Categories',  'c', 'WITH', 'c = a.category')
+           // ->select('a.id', 'a.title', 'a.date', 'a.resume', 'a.status')
+            ->where('a.category =:category ')
+            ->setParameter('category', '2')
+         //   ->setMaxResults(5)
+            ->orderBy('a.title', 'ASC');
+        return $qb->getQuery()->getResult();
+    }
+        
+
+    /**
+     * Articles Publiés 
      * @return Articles[] Retourne un tableau d'objets d'articles publiés mais sans les auteurs et Categories
     */
-    
     public function findArticlesPubliés()
     {
         $qb = $this->createQueryBuilder('a');
@@ -40,6 +57,7 @@ class ArticlesRepository extends ServiceEntityRepository
 
         return $qb->getQuery()->getResult();
     }
+
 
     /**
      * @return Articles[] 

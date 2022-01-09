@@ -8,5 +8,56 @@
     <h1>BIBLIO-PROJECT</h1>
     <h3>About us</h3>
 
+
+<div class="container">
+     <!-- Article main content -->
+	<article class="col-md-12 maincontent">
+        <div class="container">
+			<div class="row">	
+
+        {% for article in articles %}
+            <!-- Article Principal -->
+ <br><br>
+        
+        <tr align="left"">
+          
+                <h3>{{ article.title }}</h3>
+        
+        </tr>
+
+        <div>
+        <tr>
+            
+            <img src="{{ vich_uploader_asset(article, 'imageFile')  | imagine_filter('medium') }}" alt="{{ article.title }}">
+        </tr>
+        </div>
+        
+        
+        <tr>
+             <th>Categories :</th>
+                <td>{{ article.category.titre }}</td>
+        </tr><br><br>
+
+        <tr>
+
+            <td>{{ article.auteurs.noms }}</td>
+        </tr><br><br>
+        
+        <tr>
+
+                <td>{{ article.contenu|raw }}</td>
+            </tr><br><br>
+        
+        <tr>
+            <th>Date</th>
+                 <td>{{ article.date ? article.date|date('Y-m-d H:i:s') : '' }}</td>
+        </tr> <br><br>
+        {% endfor %}
+
+			</div> 
+		</div>
+    </article></div>
+
+</div>
     
 {% endblock %}

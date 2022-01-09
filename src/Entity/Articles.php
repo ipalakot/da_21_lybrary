@@ -36,19 +36,16 @@ class Articles
      */
     private $title;
 
-
     /**
      * @ORM\Column(type="string", length=255, unique=true, nullable=true)
      * @Gedmo\Slug(fields={"title"})
      */
     private $slug;
 
-
     /**
      * @ORM\ManyToOne(targetEntity=Auteurs::class, inversedBy="articleaut")
      */
     private $auteurs;
-
 
     /**
      * @ORM\ManyToOne(targetEntity=Categories::class, inversedBy="article")
@@ -61,11 +58,10 @@ class Articles
      */
     private $date;
 
-
     /**
      * @ORM\Column(type="string", length=1000)
      * @Assert\Length(
-     *      min = 300,
+     *      min = 100,
      *      max = 1000,
      *      minMessage = "Le titre doit avoir 1 minimum de {{ limit }} characteres long",
      *      maxMessage = "Votre Titre de ne pas depasser {{ limit }} characteres"
@@ -73,7 +69,6 @@ class Articles
      */
     private $resume;
 
-    
     /**
      * @ORM\Column(type="text")
      */
@@ -85,10 +80,9 @@ class Articles
     private $commentaires;
 
     /**
-     * @ORM\Column(type="string", length=255)
+    * @ORM\Column(type="array")
      */
-    private $status;
-
+    private $status = [];
 
     /**
      * NOTE: This is not a mapped field of entity metadata, just a simple property.
@@ -248,17 +242,19 @@ class Articles
         return $this->title;
     }
 
-    public function getStatus(): ?string
-    {
-        return $this->status;
-    }
 
-    public function setStatus(string $status): self
-    {
-        $this->status = $status;
+       public function getStatus(): ?array
+   {
+       return $this->status;
+   }
 
-        return $this;
-    }
+   public function setStatus(array $status): self
+   {
+       $this->status = $status;
+
+       return $this;
+   }
+   
 
  /**
      * If manually uploading a file (i.e. not using Symfony Form) ensure an instance

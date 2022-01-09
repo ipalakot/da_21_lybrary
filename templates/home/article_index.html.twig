@@ -4,32 +4,47 @@
 
 {% block body %}
    <br><br>
+
+   
+
+<div class="container">
+     <!-- Article main content -->
+	<article class="col-md-12 maincontent">
+        <div class="container">
+			<div class="row">	
+
     <h1>Tous les Articles</h1>
 
     <table class="table">
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Title</th>                    
+                 <th>Image</th>
+                <th>Title</th>  
+                <th>Date Création</th>                  
                 <th>Auteurs</th>
                 <th>Categorie</th>
                 <th>Resumé</th>            
-                <th>Date Création</th>
-                <th>actions</th>
+
             </tr>
         </thead>
         <tbody>
         {% for article in articles %}
             <tr>
                 <td>{{ article.id }}</td>
-                <td>{{ article.title }}</td>
+                  <td> <img src="{{vich_uploader_asset(article, 'imageFile') | imagine_filter('rectangle') }}" class="img-fluid img-thumbnail" alt=""   ></td>
+                <td align="left">
+                    <a href="{{ path('articles_show', {'slug': article.slug}) }}">
+                        {{ article.title }}
+                    </a>
+                </td>
+                <td>
+                    {{ article.date ? article.date|date('Y-m-d') : '' }}</td>
                 <th>{{ article.auteurs.noms}}</th>
                 <td>{{ article.category.titre}}</td>
-                <td>{{ article.resume}}</td>
-                <td>{{ article.date ? article.date|date('Y-m-d') : '' }}</td>
-                <td>
-                    <a href="{{ path('articles_show', {'slug': article.slug}) }}">afficher |</a>
-                </td>
+                <td>{{ article.resume | raw }}</td>
+
+
             </tr>
         {% else %}
             <tr>
@@ -40,4 +55,10 @@
     </table>
 
     <a href="{{ path('articles_new') }}">Creation </a>
+			</div> 
+		</div>
+    </article></div>
+
+</div>
+
 {% endblock %}
