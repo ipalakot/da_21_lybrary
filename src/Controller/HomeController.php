@@ -23,8 +23,11 @@ use Symfony\Component\HttpFoundation\Request;
 class HomeController extends AbstractController
 {
     /**
-     * @Route("/", name="articles_index_home")
-     * @Route("/accueil", name="index_home") 
+     * Index de l'application // Liste des Articles à la UNE
+     * @param ArticlesRepository $articlesRepository
+     * @Route("/", name="home")
+     * @Route("/accueil", name="accueil")
+     * @return void
      */
     public function index(ArticlesRepository $articlesRepository): Response
     {
@@ -34,29 +37,31 @@ class HomeController extends AbstractController
         ]);
     }
 
+
      /**
+     * A Propos de l'application
+     * @param ArticlesRepository $articlesRepository
      * @Route("/aprpos", name="home_about")
      */
     public function about(ArticlesRepository $articlesRepository): Response
     {
         $articles = $articlesRepository->findArticlesAbout();
         return $this->render('home/about.html.twig', [
-            'controller_name' => 'HomeController',
             'articles' => $articles,
 
         ]);
     }
 
      /**
-     * @Route("/h_articles", name="home_aarticles")
+     * Tous les articles dans la Documentation
+     * @param ArticlesRepository $articlesRepository
+     * @Route("/h_articles", name="home_doc_articles")
      */
     public function listesarticles(ArticlesRepository $articlesRepository): Response
     {
-        $articles = $articlesRepository->findAll();
+        $articles = $articlesRepository->findArticlesPubliés();
         return $this->render('home/articles_h_index.html.twig', [
-            'controller_name' => 'HomeController',
             'articles' => $articles,
-
         ]);
     }
 
@@ -124,20 +129,5 @@ class HomeController extends AbstractController
           'articles' => $articles]);
   }
   
-  
-
-    /**
-     * @Route("/", name="home")
-     * @Route("/accueil", name="accueil")
-     */
-    public function home(ArticlesRepository $articlesRepository): Response
-    {
-        $articles = $articlesRepository->findArticlesHome();
-        return $this->render('home/index.html.twig', [
-            'articles' => $articles,
-
-        ]);
-    }
-    
    
 }

@@ -30,7 +30,6 @@ class ArticlesRepository extends ServiceEntityRepository
     {
         $qb = $this->createQueryBuilder('a');
         $qb
-
             ->innerJoin('App\Entity\Categories',  'c', 'WITH', 'c = a.category')
            // ->select('a.id', 'a.title', 'a.date', 'a.resume', 'a.status')
             ->where('a.category =:category ')
@@ -52,7 +51,7 @@ class ArticlesRepository extends ServiceEntityRepository
             ->select('a.id', 'a.title', 'a.date', 'a.resume', 'a.status')
             ->where('a.status =:status ')
             ->setParameter('status', '1')
-            ->setMaxResults(5)
+          //  ->setMaxResults(5)
             ->orderBy('a.title', 'ASC');
 
         return $qb->getQuery()->getResult();

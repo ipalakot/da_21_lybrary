@@ -9,11 +9,12 @@ use App\Entity\Commentaires;
 
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
+use Doctrine\Bundle\FixturesBundle\FixtureGroupInterface;
 
 use Faker; 
 use Faker\Factory;
 
-class ArticlesFixtures extends Fixture
+class ArticlesFixtures extends Fixture implements FixtureGroupInterface
 {
     public function load(ObjectManager $manager): void
     {
@@ -42,19 +43,17 @@ class ArticlesFixtures extends Fixture
             
             $manager->persist($auteurs);
 
-
-        
                 // Mainteannt je cree mes Articles
                 for ($j=0; $j<3 ; $j++ ) 
                 { 
                     $articles = new Articles();
                     
-                    $articles->setTitle($faker->sentence($nb = 5, $asText = false))
-                            ->setImageName($faker->text()) 
-                            //->setResume($faker->sentence())
-                            ->setContenu($faker->text($maxNbChars = 250)) 
+                    $articles->setTitle($faker->sentence())
+                            ->setImageName("image.jpg")
+                            ->setResume($faker->text())
+                            ->setContenu($faker->text()) 
                             ->setDate(new \DateTime())
-                            ->setStatus($faker->boolean())
+                            ->setStatus([1])
                             ->setCategory($categories)
                             ->setAuteurs($auteurs);
                             
@@ -80,4 +79,9 @@ class ArticlesFixtures extends Fixture
             }}
      $manager->flush();
     }
+
+public static function getGroups(): array
+     {
+         return ['group3'];
+     }
 }
