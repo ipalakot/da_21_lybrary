@@ -4,7 +4,7 @@ namespace App\Tests;
 
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
-class UtilTest2Test extends KernelTestCase
+class ControllerTest extends KernelTestCase
 {
     public function testSomething(): void
     {

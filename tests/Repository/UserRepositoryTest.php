@@ -9,7 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
 class UserRepositoryTest extends KernelTestCase
 {
-    use FixturesTrait;
+   // use FixturesTrait;
     
     public function testCalcul(): void
     {
@@ -17,13 +17,13 @@ class UserRepositoryTest extends KernelTestCase
         # Pour cela, je je Lance le kermel afin d'avoir le noyau
         // $kernel = self::bootKernel();
             self::bootKernel();
-            $this->loadFixtures([UserFixtures::class]);
+           // $this->loadFixtures([UserFixtures::class]);
 
         # Maintenant que j'ai le noyau je peux acceder au Container
          // $kermel->getContainer();
-          $user = self::$container->get(UserRepository::class)->count([]);
-          $this ->assertEquals(10, $user);
-        
+            $user = self::$container->get(UserRepository::class)->count([]);
+            $this ->assertEquals(10, $user);
+    
         //$this->assertSame('test', $kernel->getEnvironment());
         //$routerService = self::$container->get('router');
         //$myCustomService = self::$container->get(CustomService::class);
