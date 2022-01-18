@@ -49,7 +49,7 @@ class ArticlesFixtures extends Fixture implements FixtureGroupInterface
                     $articles = new Articles();
                     
                     $articles->setTitle($faker->sentence())
-                            ->setImageName("image.jpg")
+                           // ->setImageName("image.jpg")
                             ->setResume($faker->text())
                             ->setContenu($faker->text()) 
                             ->setDate(new \DateTime())
