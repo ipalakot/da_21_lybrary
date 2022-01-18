@@ -12,8 +12,45 @@ class CategoriesTest extends TestCase
         $categories = new Categories();
         
         $categories->setTitre('Titre')
-                   ->setResume('Rsume');
-                   $this->assertTrue($categories->getTitre()==='Titre');
-                   $this->assertTrue($categories->getResume()==='Resume');
+                   ->setResume('Resume');
+    
+        $this->assertTrue($categories->getTitre()==='Titre');
+        $this->assertTrue($categories->getResume()==='Resume');
+    }
+
+    public function testIsFalse()
+    {
+        $categories = new Categories();
+        
+        $categories->setTitre('Titre')
+                   ->setResume('Resume');
+    
+        $this->assertFalse($categories->getTitre() !=='Titre');
+        $this->assertFalse($categories->getResume() !=='Resume');
+    }
+
+    public function testIsEmpty()
+    {
+        $categories = new Categories();
+        
+        $this->assertEmpty($categories->getTitre());
+        $this->assertEmpty($categories->getResume() );
+        $this->assertEmpty($categories->getId());
+    }
+    
+    public function AddArticles(){
+        
+         $categories = new Categories();
+         $articles = new Articles();
+       
+
+        $this->assertEmpty($categories->getArticle());
+
+        $articles->addArticle($articles);
+        $this->assertContains($articles, $categories->getArticle());
+
+        $articles->RemoveArticle($commentaire);
+        $this->assertEmpty($categories->getArticle());
+
     }
 }

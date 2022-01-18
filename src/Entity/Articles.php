@@ -77,7 +77,7 @@ class Articles
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Commentaires", mappedBy="artcile_comm", orphanRemoval=true)
      */
-    private $commentaires;
+    private $commentaire;
 
     /**
     * @ORM\Column(type="array")
@@ -113,7 +113,7 @@ class Articles
 
     public function __construct()
     {
-        $this->commentaires = new ArrayCollection();
+        $this->commentaire = new ArrayCollection();
        // $this->updatedAt = new \DateTime();
     }
 
@@ -210,24 +210,24 @@ class Articles
     /**
      * @return Collection|Commentaires[]
      */
-    public function getCommentaires(): Collection
+    public function getCommentaire(): Collection
     {
-        return $this->commentaires;
+        return $this->commentaire;
     }
 
-    public function addCommentaire(Commentaires $commentaire): self
+    public function addCommentaire(Commentaire $commentaire): self
     {
-        if (!$this->commentaires->contains($commentaire)) {
-            $this->commentaires[] = $commentaire;
+        if (!$this->commentaire->contains($commentaire)) {
+            $this->commentaire[] = $commentaire;
             $commentaire->setArtcileComm($this);
         }
 
         return $this;
     }
 
-    public function removeCommentaire(Commentaires $commentaire): self
+    public function removeCommentaire(Commentaire $commentaire): self
     {
-        if ($this->commentaires->removeElement($commentaire)) {
+        if ($this->commentaire->removeElement($commentaire)) {
             // set the owning side to null (unless already changed)
             if ($commentaire->getArtcileComm() === $this) {
                 $commentaire->setArtcileComm(null);
@@ -305,4 +305,3 @@ class Articles
     }
 
 }
-
