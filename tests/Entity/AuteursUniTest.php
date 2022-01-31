@@ -48,19 +48,18 @@ class AuteursUniTest extends TestCase
         
     }
 
-        public function GetAddCRemoveArticles(){
-        
-        $auteurs = new Auteurs();
-        $articles = new Articles();
+    public function testAddremoveSetArticles()
+    {        
+        $auteur = new Auteurs();
+        $article = new Articles();
 
-        $this->assertEmpty($auteurs->getArticleaut());
+        $this->assertEmpty($auteur-> getArticleaut());
 
-        $articles->addArticleaut($articles);
-        $this->assertContains($articles, $auteurs->getArticleaut());
+        $auteur->addArticleaut($article);
+        $this->assertContains($article, $auteur-> getArticleaut());
 
-        $articles->removeArticleaut($articles);
-        $this->assertEmpty($auteurs->getArticleaut());
-
+        $auteur->removeArticleaut($article);
+        $this->assertEmpty($auteur-> getArticleaut());
     }
     
 }

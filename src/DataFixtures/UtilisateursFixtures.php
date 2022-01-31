@@ -2,16 +2,20 @@
 
 namespace App\DataFixtures;
 
-use App\Entity\Utilisateurs;
+  use App\Entity\Utilisateurs;
 
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 
 use Doctrine\Bundle\FixturesBundle\FixtureGroupInterface;
 
-
 use Faker; 
 use Faker\Factory;
+
+/** 
+ * @codeCoverageIgnore
+ * 
+*/
 
 class UtilisateursFixtures extends Fixture implements FixtureGroupInterface
 {

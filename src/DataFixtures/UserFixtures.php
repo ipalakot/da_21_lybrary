@@ -16,6 +16,10 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Faker; 
 use Faker\Factory;
 
+/** 
+ * @codeCoverageIgnore
+ * 
+*/
 class UserFixtures extends Fixture implements FixtureGroupInterface
 {
      private $passwordEncoder;

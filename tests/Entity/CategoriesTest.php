@@ -2,6 +2,8 @@
 
 namespace App\Tests\Entity;
 
+use App\Entity\Article;
+use App\Entity\Articles;
 use App\Entity\Categories;
 use PHPUnit\Framework\TestCase;
 
@@ -38,19 +40,19 @@ class CategoriesTest extends TestCase
         $this->assertEmpty($categories->getId());
     }
     
-    public function AddArticles(){
+    
+    public function testAddremoveSetArticles()
+    {        
         
-         $categories = new Categories();
-         $articles = new Articles();
-       
+        $categorie = new Categories();
+        $article = new Articles();
 
-        $this->assertEmpty($categories->getArticle());
+        $this->assertEmpty($categorie->getArticle());
 
-        $articles->addArticle($articles);
-        $this->assertContains($articles, $categories->getArticle());
+        $categorie->addArticle($article);
+        $this->assertContains($article, $categorie->getArticle());
 
-        $articles->RemoveArticle($commentaire);
-        $this->assertEmpty($categories->getArticle());
-
+        $categorie->removeArticle($article);
+        $this->assertEmpty($categorie->getArticle());
     }
 }

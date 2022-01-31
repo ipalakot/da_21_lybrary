@@ -2,19 +2,22 @@
 
 namespace App\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
+use Doctrine\Common\Collections\Collection;
+use ApiPlatform\Core\Annotation\ApiResource;
+use Symfony\Component\HttpFoundation\File\File;
+use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Serializer\Annotation\Groups;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
-use Gedmo\Mapping\Annotation as Gedmo;
-use Vich\UploaderBundle\Mapping\Annotation as Vich;
-use Symfony\Component\HttpFoundation\File\File;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ArticlesRepository")
  * @UniqueEntity("title")
  * @Vich\Uploadable
+ * @ApiResource
  */
 class Articles
 {
@@ -22,6 +25,8 @@ class Articles
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * @Groups("article")
+     *  @Groups({"article:api"})
      */
     private $id;
 
@@ -33,12 +38,14 @@ class Articles
      *      minMessage = "Le titre doit avoir 1 minimum de {{ limit }} characteres long",
      *      maxMessage = "Votre Titre de ne pas depasser {{ limit }} characteres"
      * )
+     * @Groups("article:api")
      */
     private $title;
 
     /**
      * @ORM\Column(type="string", length=255, unique=true, nullable=true)
      * @Gedmo\Slug(fields={"title"})
+     * @Groups("article:api")
      */
     private $slug;
 
@@ -55,6 +62,7 @@ class Articles
 
     /**
      * @ORM\Column(type="datetime")
+     * @Groups("article:api")
      */
     private $date;
 
@@ -65,21 +73,26 @@ class Articles
      *      max = 1000,
      *      minMessage = "Le titre doit avoir 1 minimum de {{ limit }} characteres long",
      *      maxMessage = "Votre Titre de ne pas depasser {{ limit }} characteres"
+     * 
      * )
+     * @Groups("article:api")
      */
     private $resume;
 
     /**
      * @ORM\Column(type="text")
+     * @Groups("article:api")
      */
     private $contenu;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Commentaires", mappedBy="artcile_comm", orphanRemoval=true)
+     * @Groups({"article:api"})
      */
     private $commentaire;
 
     /**
+     * @Groups("article")
     * @ORM\Column(type="array")
      */
     private $status = [];
@@ -106,6 +119,7 @@ class Articles
      * 
      * @Gedmo\Timestampable(on="update")
      * @ORM\Column(type="datetime")
+     * @Groups("article")
      */
     private $updatedAt;
 

@@ -90,32 +90,18 @@ class ArticlesUniTest extends TestCase
         $this->assertEmpty($articles->getAuteurs());
     }
 
-   /* public function AddGetRemoveCommentaires(){
+       public function testAddCommentaires(){
         
-        $articles = new Articles();
+        $article = new Articles();
         $commentaire = new Commentaires();
 
-        $this->assertEmpty($articles->getArtcileComm());
+        $this->assertEmpty($article->getCommentaire());
 
-        $articles->addCommentaire($commentaire);
-        $this->assertContains($commentaire, $articles->getArtcileComm());
+        $article->addCommentaire($commentaire);
+        $this->assertContains($commentaire, $article->getCommentaire());
 
-        $articles->RemoveCommentaire($commentaire);
-        $this->assertEmpty($articles->getArtcileComm());
-    }*/
-
-       public function AddCommentaires(){
-        
-        $articles = new Articles();
-        $commentaire = new Commentaires();
-
-        $this->assertEmpty($articles->getCommentaire());
-
-        $articles->addCommentaire($commentaire);
-        $this->assertContains($commentaire, $articles->getCommentaire());
-
-        $articles->RemoveCommentaire($commentaire);
-        $this->assertEmpty($articles->getCommentaire());
+     //   $article->RemoveCommentaire($commentaire);
+     //   $this->assertEmpty($article->getCommentaire());
 
     }
 }

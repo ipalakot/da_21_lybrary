@@ -10,6 +10,10 @@ use Doctrine\Bundle\FixturesBundle\FixtureGroupInterface;
 use Faker; 
 use Faker\Factory;
 
+/** 
+ * @codeCoverageIgnore
+ * 
+*/
 class AuteursFixtures extends Fixture  implements FixtureGroupInterface
 {
 public function load(ObjectManager $manager): void

@@ -2,8 +2,9 @@
 
 namespace App\Entity;
 
-use App\Repository\CommentairesRepository;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\CommentairesRepository;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=CommentairesRepository::class)
@@ -14,21 +15,25 @@ class Commentaires
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * @Groups({"article:api"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"article:api"})
      */
     private $auteur;
 
     /**
      * @ORM\Column(type="datetime")
+     * @Groups({"article:api"})
      */
     private $date;
 
     /**
      * @ORM\Column(type="text")
+     * @Groups({"article:api"})
      */
     private $contenu;
 
