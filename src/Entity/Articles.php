@@ -51,12 +51,14 @@ class Articles
 
     /**
      * @ORM\ManyToOne(targetEntity=Auteurs::class, inversedBy="articleaut")
+     * @Groups({"article:api"})
      */
     private $auteurs;
 
     /**
      * @ORM\ManyToOne(targetEntity=Categories::class, inversedBy="article")
      * @ORM\JoinColumn(nullable=false)
+     *  @Groups({"article:api"})
      */
     private $category;
 

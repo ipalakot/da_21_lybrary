@@ -2,10 +2,11 @@
 
 namespace App\Entity;
 
-use App\Repository\AuteursRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\AuteursRepository;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=AuteursRepository::class)
@@ -16,21 +17,25 @@ class Auteurs
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * @Groups({"article:api"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"article:api"})
      */
     private $noms;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"article:api"})
      */
     private $prenoms;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"article:api"})
      */
     private $mails;
 

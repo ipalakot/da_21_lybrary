@@ -2,11 +2,12 @@
 
 namespace App\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\Collection;
 
-use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
+use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
@@ -20,6 +21,7 @@ class Categories
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * @Groups({"article:api"})
      */
     private $id;
 
@@ -30,6 +32,8 @@ class Categories
      *      max = 50,
      *      minMessage = "Le titre doit avoir 1 minimum de {{ limit }} characteres long",
      *      maxMessage = "Votre Titre de ne pas depasser {{ limit }} characteres")
+     * @Groups({"article:api"})
+     *
      */
     private $titre;
 
@@ -46,6 +50,7 @@ class Categories
 
     /**
      * @ORM\OneToMany(targetEntity=Articles::class, mappedBy="category")
+     * 
      */
     private $article;
 
